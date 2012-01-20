@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NYC PostgreSQL User Group - {% block title %}Welcome{% endblock title %}</title>
+    <meta http-equiv="Content-Type" content="text/xhtml; charset=utf-8" />
+    <!-- <link rel="shortcut icon" href="/favicon.ico" /> -->
+    <style type="text/css" media="screen" title="Normal Text">@import url("{{ STATIC_URL }}css/screen.css");</style>
+  </head>
+  <body>
+    <div id="pgContainerWrap">
+      <div id="pgContainer">
+        <div id="pgHeaderContainer">
+          <div id="pgHeader">
+            <div id="pgHeaderLogoLeft">
+              <a href="{% url home %}">
+                <img alt="PostgreSQL" src="/static/images/layout/logo.png" />
+              </a>
+            </div>
+            <div id="pgHeaderCenter"></div>
+            <div id="pgHeaderLogoRight">
+              <a href="{% url home %}">
+                <img width="210" height="80" alt="The world's most advanced open source database." src="/static/images/layout/hdr_right.png" />
+              </a>
+            </div>
+          </div> <!-- pgHeader -->
+          <div id="pgTopNav">
+            <div id="pgTopNavLeft">
+              <img width="7" height="23" alt="" src="/static/images/layout/nav_lft.png" />
+            </div>
+            <div id="pgTopNavRight">
+              <img width="7" height="23" alt="" src="/static/images/layout/nav_rgt.png" />
+            </div>
+            <ul id="pgTopNavList">
+              <li><a href="{% url home %}" title="Home">Home</a></li>
+              <li><a href="#" title="About">About</a></li>
+              <li><a href="#" title="Download">Venue</a></li>
+              <li><a href="#" title="Documentation">Registration</a></li>
+              <li><a href="#" title="Community">Schedule</a></li>
+              <li><a href="#" title="Developers">Sponsors</a></li>
+              <li><a href="#" title="Support">Contact</a></li>
+            </ul>
+          </div> <!-- pgTopNav -->
+        </div> <!-- pgHeaderContainer -->
+        <div id="pgContent">
+          {% block content %}{% endblock content %}
+          <br class="pgClearBoth" />
+        </div> <!-- pgContent -->
+      </div>
+    </div> <!-- pgContainerWrap -->
+  </body>
+</html>
