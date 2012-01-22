@@ -13,3 +13,16 @@ class Conference(models.Model):
 
     def __unicode__(self):
         return self.name
+
+class Venue(models.Model):
+    """
+        set venue information for a conference
+    """
+    conference = models.OneToOneField('Conference', blank=True)
+    name = models.CharField(max_length=255)
+    street = models.CharField(max_length=255)
+    city = models.CharField(max_length=255)
+    state = models.CharField(max_length=2)
+    zip = models.CharField(max_length=10)
+    country = models.CharField(max_length=2)
+    description = models.TextField()

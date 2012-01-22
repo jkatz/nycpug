@@ -96,12 +96,23 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.contrib.auth.context_processors.auth',
+    'django.contrib.messages.context_processors.messages',
+    'app.core.context_processors.sponsors',
+)
+
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 )
 
 ROOT_URLCONF = 'nycpug.urls'
@@ -116,6 +127,7 @@ TEMPLATE_DIRS = (
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
+    'django.contrib.flatpages',
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
@@ -126,6 +138,7 @@ INSTALLED_APPS = (
     'app.news',
     'app.sponsor',
     'south',
+    'tinymce',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -150,6 +163,15 @@ LOGGING = {
         },
     }
 }
+
+# tinymce conf
+# TINYMCE_JS_URL (default: settings.MEDIA_URL + 'js/tiny_mce/tiny_mce.js')
+# TINYMCE_JS_ROOT (default: settings.MEDIA_ROOT + 'js/tiny_mce')
+# TINYMCE_DEFAULT_CONFIG (default: {'theme': "simple", 'relative_urls': False})
+TINYMCE_SPELLCHECKER = False
+TINYMCE_COMPRESSOR = False
+TINYMCE_FILEBROWSER = False
+
 
 try:
     from local_settings import *

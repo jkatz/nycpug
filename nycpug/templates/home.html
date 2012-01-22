@@ -14,19 +14,21 @@
     </div>
     <div id="pgSideWrap">
       <h1>{{ conference.name }} Sponsors</h1>
-      {% regroup sponsors by category as sponsor_list %}
-      {% for category in sponsor_list %}
-        <h2>{{ category.grouper }}</h2>
-        {% for item in category.list %}
-          {% for sponsor in item.sponsors %}
-            <p>
-              <a href="{{ sponsor.url }}">
-                <img src="{{ sponsor.logo.url }}" />
-              </a>
-            </p>
+      {% if sponsors %}
+        {% regroup sponsors by category as sponsor_list %}
+        {% for category in sponsor_list %}
+          <h2>{{ category.grouper }}</h2>
+          {% for item in category.list %}
+            {% for sponsor in item.sponsors %}
+              <p>
+                <a href="{{ sponsor.url }}">
+                  <img src="{{ sponsor.logo.url }}" />
+                </a>
+              </p>
+            {% endfor %}
           {% endfor %}
         {% endfor %}
-      {% endfor %}
+      {% endif %}
     </div>
   </div>
 {% endblock content %}
