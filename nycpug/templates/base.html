@@ -30,16 +30,7 @@
             <div id="pgTopNavRight">
               <img width="7" height="23" alt="" src="/static/images/layout/nav_rgt.png" />
             </div>
-            <ul id="pgTopNavList">
-              <li><a href="{% url home %}">Home</a></li>
-              <li><a href="/about/">About</a></li>
-              <li><a href="#">Venue</a></li>
-              <li><a href="#">Registration</a></li>
-              <li><a href="#">Schedule</a></li>
-              <li><a href="{% url speakers %}">Speakers</a></li>
-              <li><a href="/sponsor/">Sponsor</a></li>
-              <li><a href="#">Contact</a></li>
-            </ul>
+            {% include '_nav.html' %}
           </div> <!-- pgTopNav -->
         </div> <!-- pgHeaderContainer -->
         <div id="pgContent">
