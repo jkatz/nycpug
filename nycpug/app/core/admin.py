@@ -21,7 +21,12 @@ class FlatPageAdmin(FlatPageAdminOld):
         js = ('js/tiny_mce/tiny_mce.js',
               'js/tiny_mce/tiny_mce_popup.js',)
 
+class ProposalAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'proposal_name',)
+
 admin.site.unregister(FlatPage)
 admin.site.register(FlatPage, FlatPageAdmin)
 
 admin.site.register(Conference, ConferenceAdmin)
+admin.site.register(Proposal, ProposalAdmin)
+admin.site.register(Venue)
