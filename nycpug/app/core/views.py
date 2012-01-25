@@ -17,6 +17,9 @@ def home(request):
         'conference': conference,
     }, RequestContext(request))
 
+def registration(request):
+    return render_to_response('registration.html', {}, RequestContext(request))
+
 def speakers(request):
     message = None
     if request.POST:

@@ -14,7 +14,9 @@ class ConferenceAdmin(admin.ModelAdmin):
 
 class FlatPageAdmin(FlatPageAdminOld):
     formfield_overrides = {
-        models.TextField: { 'widget': AdminTinyMCE },
+        models.TextField: {
+            'widget': AdminTinyMCE()
+        },
     }
 
     class Media:
