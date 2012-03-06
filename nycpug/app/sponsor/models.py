@@ -12,7 +12,7 @@ class Sponsor(models.Model):
         return self.name
 
     class Meta:
-        ordering = [sort_order]
+        ordering = ['sort_order']
 
 class SponsorCategory(models.Model):
     name = models.CharField(max_length=255)
