@@ -35,6 +35,22 @@ class Proposal(models.Model):
     def __unicode__(self):
         return self.proposal_name
 
+class Room(models.Model):
+    venue = models.ForeignKey('Venue', related_name='rooms')
+    name = models.CharField(max_length=255)
+
+    def __unicode__(self):
+        return self.name
+
+class Schedule(models.Model):
+    start_time = models.TimeField()
+    end_time = models.TimeField()
+    proposal = models.ForeignKey('Proposal', null=True, blank=True)
+    title = models.CharField(max_length=255, null=True, blank=True)
+    description = models.CharField(max_length=255, null=True, blank=True)
+    room = models.ForeignKey('Room', related_name='schedules', null=True, blank=True)
+    entire_space = models.BooleanField(default=False)
+
 class Speaker(models.Model):
     """
         speakers
@@ -59,3 +75,6 @@ class Venue(models.Model):
     zip = models.CharField(max_length=10)
     country = models.CharField(max_length=2)
     description = models.TextField()
+
+    def __unicode__(self):
+        return self.name

@@ -8,6 +8,7 @@ urlpatterns = patterns('',
     url(r'^$', 'app.core.views.home', name='home'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^registration/', 'app.core.views.registration', name='registration'),
+    url(r'^schedule/', 'app.core.views.schedule', name='schedule'),
     url(r'^speakers/', 'app.core.views.speakers', name='speakers'),
     url(r'^tinymce/', include('tinymce.urls')),
 )

@@ -26,10 +26,18 @@ class FlatPageAdmin(FlatPageAdminOld):
 class ProposalAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'proposal_name',)
 
+class RoomAdmin(admin.ModelAdmin):
+    list_display = ('name', 'venue',)
+
+class ScheduleAdmin(admin.ModelAdmin):
+    list_display = ('start_time', 'end_time', 'proposal', 'title')
+
 admin.site.unregister(FlatPage)
 admin.site.register(FlatPage, FlatPageAdmin)
 
 admin.site.register(Conference, ConferenceAdmin)
 admin.site.register(Proposal, ProposalAdmin)
+admin.site.register(Room, RoomAdmin)
+admin.site.register(Schedule, ScheduleAdmin)
 admin.site.register(Speaker)
 admin.site.register(Venue)
