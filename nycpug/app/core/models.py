@@ -24,11 +24,28 @@ class Proposal(models.Model):
     )
     name = models.CharField(max_length=255)
     email = models.EmailField(max_length=255)
+    speaker = models.ForeignKey('Speaker', null=True, related_name='proposals')
     proposal_name = models.CharField(max_length=255)
     proposal_length = models.CharField(max_length=255, choices=CHOICES)
     description = models.TextField()
     other = models.TextField(null=True, blank=True)
+    accepted = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def __unicode__(self):
+        return self.proposal_name
+
+class Speaker(models.Model):
+    """
+        speakers
+    """
+    name = models.CharField(max_length=255)
+    email = models.EmailField(max_length=255)
+    title = models.CharField(max_length=255, null=True, blank=True)
+    company = models.CharField(max_length=255, null=True, blank=True)
+
+    def __unicode__(self):
+        return self.name
 
 class Venue(models.Model):
     """

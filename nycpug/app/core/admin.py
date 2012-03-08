@@ -31,4 +31,5 @@ admin.site.register(FlatPage, FlatPageAdmin)
 
 admin.site.register(Conference, ConferenceAdmin)
 admin.site.register(Proposal, ProposalAdmin)
+admin.site.register(Speaker)
 admin.site.register(Venue)
