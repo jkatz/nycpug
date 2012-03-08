@@ -2,7 +2,7 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from app.core.models import Conference
+from app.core.models import Conference, Speaker
 from app.core.forms import ProposalForm
 from app.news.models import Article
 
@@ -21,21 +21,7 @@ def registration(request):
     return render_to_response('registration.html', {}, RequestContext(request))
 
 def speakers(request):
-    message = None
-    if request.POST:
-        form = ProposalForm(request.POST)
-        if form.is_valid():
-            form.save()
-            message = 'Thank you for your submission!  You may make more submissions using the form below.'
-            form = ProposalForm(
-                initial={
-                    'name': form.cleaned_data.get('name'),
-                    'email': form.cleaned_data.get('email'),
-                }
-            )
-    else:
-        form = ProposalForm()
+    speakers = Speaker.objects.filter(proposals__accepted=True).order_by('name').distinct()
     return render_to_response('speakers.html', {
-        'form': form,
-        'message': message,
+        'speakers': speakers,
     }, RequestContext(request))
