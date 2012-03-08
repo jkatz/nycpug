@@ -29,9 +29,14 @@ def schedule(request):
     for item in schedule:
         if item.start_time != current_time:
             current_time = item.start_time
-            master_list.append([item.start_time, item.end_time, [item]])
+            master_list.append([item.start_time, item.end_time])
+            if item.entire_space:
+                master_list[-1].append([item])
+            else:
+                master_list[-1].append(list(range(len(room_positions))))
+                master_list[-1][2][room_positions.index(item.room)] = item
         else:
-            master_list[-1][2].append(item)
+            master_list[-1][2][room_positions.index(item.room)] = item
     return render_to_response('schedule.html', {
         'master_list': master_list,
         'room_positions': room_positions,
