@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     url(r'^registration/', 'app.core.views.registration', name='registration'),
     url(r'^schedule/', 'app.core.views.schedule', name='schedule'),
     url(r'^speakers/', 'app.core.views.speakers', name='speakers'),
+    url(r'^talk/(?P<proposal_id>\d+)', 'app.core.views.talk', name='talk'),
     url(r'^tinymce/', include('tinymce.urls')),
 )
 

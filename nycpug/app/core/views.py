@@ -1,8 +1,8 @@
 from django.core.urlresolvers import reverse
-from django.shortcuts import render_to_response
+from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 
-from app.core.models import Conference, Room, Speaker, Schedule
+from app.core.models import Conference, Proposal, Room, Speaker, Schedule
 from app.core.forms import ProposalForm
 from app.news.models import Article
 
@@ -46,4 +46,10 @@ def speakers(request):
     speakers = Speaker.objects.filter(proposals__accepted=True).order_by('name').distinct()
     return render_to_response('speakers.html', {
         'speakers': speakers,
+    }, RequestContext(request))
+
+def talk(request, proposal_id):
+    proposal = get_object_or_404(Proposal, accepted=True, id=proposal_id)
+    return render_to_response('talk.html', {
+        'proposal': proposal,
     }, RequestContext(request))
