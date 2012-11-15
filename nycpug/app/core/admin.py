@@ -24,7 +24,7 @@ class FlatPageAdmin(FlatPageAdminOld):
               'js/tiny_mce/tiny_mce_popup.js',)
 
 class ProposalAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'proposal_name',)
+    list_display = ('name', 'email', 'proposal_name', 'conference', )
 
 class RoomAdmin(admin.ModelAdmin):
     list_display = ('name', 'venue',)

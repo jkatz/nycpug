@@ -22,6 +22,7 @@ class Proposal(models.Model):
         ('40min', '40 Minute Talk'),
         ('20min', '20 Minute Talk'),
     )
+    conference = models.ForeignKey('Conference', null=True, related_name='proposals')
     name = models.CharField(max_length=255)
     email = models.EmailField(max_length=255)
     speaker = models.ForeignKey('Speaker', null=True, related_name='proposals')
