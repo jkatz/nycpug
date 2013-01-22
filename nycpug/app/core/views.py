@@ -39,6 +39,7 @@ def schedule(request):
         else:
             master_list[-1][2][room_positions.index(item.room)] = item
     return render_to_response('schedule.html', {
+        'conference': conference,
         'master_list': master_list,
         'room_positions': room_positions,
     }, RequestContext(request))

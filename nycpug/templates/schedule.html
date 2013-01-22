@@ -4,10 +4,9 @@
   <div id="speakers">
     <div id="pgContentWrap">
       <h1>Schedule</h1>
-      <p>Below is the schedule of talks for PGDay NYC 2012 on April 2nd, 2012 at the Lighthouse International in New York.</p>
-      <p>Talks will occur between 9:00am through 6:00pm.</p>
-      <p>At 6:30pm, there will be a complimentary networking party at the <a href='http://tammanyhalltavern.com' target='_blank'>Tammany Hall Tavern</a> located at 218 E 53rd St between 3rd and 2nd Ave.</p>
-      <p>Tickets for PGDay NYC 2012 can be purchased on the <a href='{% url registration %}'>registration</a> page.</p>
+      <p>Below is the schedule of talks for {{ conference.name }} on {{ conference.start_date|date:"F jS, Y" }} at the {{ conference.venue.name }} at {{ conference.venue.street }} {{ conference.venue.city }}, {{ conference.venue.state }} {{ conference.venue.zip }}</p>
+      <p>{{ conference.name }} will take place all day and includes a complimentary networking reception with open bar and food at the end of the day.</p>
+      <p>Tickets for {{ conference.name }} can be purchased on the <a href='{% url registration %}'>registration</a> page.</p>
       <p>If you have any questions, please contact us at <a href='mailto:contact@nycpug.org'>contact@nycpug.org</a></p>
       <table border='1'>
         <tr>
@@ -30,11 +29,6 @@
             {% endif %}
           </tr>
         {% endfor %}
-        <tr>
-          <td>6:30pm</td>
-          <td>8:00pm</td>
-          <td colspan='2' style='text-align:center;'><strong>PGDay NYC Networking Reception</strong><br />Location TBD</td>
-        </tr>
       </table>
     </div>
     {% include '_sponsors.html' %}
