@@ -30,7 +30,8 @@ class RoomAdmin(admin.ModelAdmin):
     list_display = ('name', 'venue',)
 
 class ScheduleAdmin(admin.ModelAdmin):
-    list_display = ('start_time', 'end_time', 'proposal', 'title')
+    list_display = ('conference', 'start_time', 'end_time', 'proposal', 'title')
+    list_filter = ('conference',)
 
 admin.site.unregister(FlatPage)
 admin.site.register(FlatPage, FlatPageAdmin)

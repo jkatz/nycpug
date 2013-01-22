@@ -44,6 +44,7 @@ class Room(models.Model):
         return self.name
 
 class Schedule(models.Model):
+    conference = models.ForeignKey('Conference', null=True)
     start_time = models.TimeField()
     end_time = models.TimeField()
     proposal = models.ForeignKey('Proposal', null=True, blank=True)
