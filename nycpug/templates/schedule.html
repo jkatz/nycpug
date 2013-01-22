@@ -4,9 +4,38 @@
   <div id="speakers">
     <div id="pgContentWrap">
       <h1>Schedule</h1>
-      <p>PGDay NYC 2013 will be held on March 22, 2013 in New York.  The exact venue venue will be announced shortly</p>
-      <p>If you would like to submit a talk, our request for proposals is currently open!  You can submit your talks by click <a href="{% url speakers %}">this link</a></p>
+      <p>Below is the schedule of talks for PGDay NYC 2012 on April 2nd, 2012 at the Lighthouse International in New York.</p>
+      <p>Talks will occur between 9:00am through 6:00pm.</p>
+      <p>At 6:30pm, there will be a complimentary networking party at the <a href='http://tammanyhalltavern.com' target='_blank'>Tammany Hall Tavern</a> located at 218 E 53rd St between 3rd and 2nd Ave.</p>
+      <p>Tickets for PGDay NYC 2012 can be purchased on the <a href='{% url registration %}'>registration</a> page.</p>
       <p>If you have any questions, please contact us at <a href='mailto:contact@nycpug.org'>contact@nycpug.org</a></p>
+      <table border='1'>
+        <tr>
+          <th>Start</th>
+          <th>End</th>
+          {% for room in room_positions %}
+            <th style='width: 250px;'>{{ room.name }}</th>
+          {% endfor %}
+        </tr>
+        {% for schedule in master_list %}
+          <tr>
+            <td>{{ schedule.0 }}</td>
+            <td>{{ schedule.1 }}</td>
+            {% if schedule.2.0.entire_space %}
+              {% include '_schedule_item.html' with item=schedule.2.0 %}
+            {% else %}
+              {% for item in schedule.2 %}
+                {% include '_schedule_item.html' with item=item %}
+              {% endfor %}
+            {% endif %}
+          </tr>
+        {% endfor %}
+        <tr>
+          <td>6:30pm</td>
+          <td>8:00pm</td>
+          <td colspan='2' style='text-align:center;'><strong>PGDay NYC Networking Reception</strong><br />Location TBD</td>
+        </tr>
+      </table>
     </div>
     {% include '_sponsors.html' %}
   </div>

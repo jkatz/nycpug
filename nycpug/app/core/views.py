@@ -21,7 +21,8 @@ def registration(request):
     return render_to_response('registration.html', {}, RequestContext(request))
 
 def schedule(request):
-    schedule = Schedule.objects.order_by('start_time').all()
+    conference = Conference.objects.filter(active=True).latest('id')
+    schedule = conference.schedule_set.order_by('start_time').all()
     rooms = Room.objects.filter(venue__conference__active=True).order_by('name').distinct().all()
     room_positions = [r for r in rooms]
     master_list = []
