@@ -45,7 +45,7 @@ def schedule(request):
     }, RequestContext(request))
 
 def speakers(request):
-    speakers = Speaker.objects.filter(proposals__accepted=True).order_by('name').distinct()
+    speakers = Speaker.objects.filter(proposals__accepted=True, proposals__conference__active=True).order_by('name').distinct()
     return render_to_response('speakers.html', { 'speakers': speakers, }, RequestContext(request))
 
 def talk(request, proposal_id):
