@@ -45,24 +45,8 @@ def schedule(request):
     }, RequestContext(request))
 
 def speakers(request):
-    message = None
-    if request.POST:
-        form = ProposalForm(request.POST)
-        if form.is_valid():
-            form.save()
-            message = 'Thank you for your submission!  You may make more submissions using the form below.'
-            form = ProposalForm(
-                initial={
-                    'name': form.cleaned_data.get('name'),
-                    'email': form.cleaned_data.get('email'),
-                }
-            )
-    else:
-        form = ProposalForm()
-    return render_to_response('speakers.html', {
-        'form': form,
-        'message': message,
-    }, RequestContext(request))
+    speakers = Speaker.objects.filter(proposals__accepted=True).order_by('name').distinct()
+    return render_to_response('speakers.html', { 'speakers': speakers, }, RequestContext(request))
 
 def talk(request, proposal_id):
     proposal = get_object_or_404(Proposal, accepted=True, id=proposal_id)
