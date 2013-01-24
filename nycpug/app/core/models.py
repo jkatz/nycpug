@@ -62,6 +62,10 @@ class Speaker(models.Model):
     title = models.CharField(max_length=255, null=True, blank=True)
     company = models.CharField(max_length=255, null=True, blank=True)
 
+    def active_proposals(self):
+        """ proposals active from the current conference that have been selected """
+        return self.proposals.filter(conference__active=True, accepted=True)
+
     def __unicode__(self):
         return self.name
 
