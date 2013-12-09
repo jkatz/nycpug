@@ -1,79 +1,133 @@
+from django.conf import settings
 from django.db import models
+from django.db.models.signals import pre_save
+
+class Block(models.Model):
+    """block out a time period during the conference for a series of Events"""
+    day = models.ForeignKey('Day', related_name='blocks')
+    start_time = models.DateTimeField()
+    end_time = models.DateTimeField()
 
 class Conference(models.Model):
-    """
-        set name and other info for conference
-    """
-    name = models.CharField(max_length=255)
+    """the big one - stores overall conference information"""
+    name = models.TextField()
+    slug = models.SlugField(max_length=255)
     start_date = models.DateField()
     end_date = models.DateField()
     active = models.BooleanField(default=False)
 
-    sponsor_categories = models.ManyToManyField('sponsor.SponsorCategory')
-
     def __unicode__(self):
         return self.name
 
+class Day(models.Model):
+    """used to organize a schedule for a given day for a Conference / Venue pair"""
+    conference = models.ForeignKey('Conference', related_name='days')
+    venue = models.ForeignKey('Venue', related_name='days')
+    event_date = models.DateField()
+
+    def __unicode__(self):
+        return self.event_date.strftime('%m-%d-%Y')
+
+class Event(models.Model):
+    """
+    keeps information for an Event in the Conference
+    if Proposal is assigned, then keeps info in sync from the Proposal
+    """
+    block = models.ForeignKey('Block', related_name='events')
+    room = models.ForeignKey('Room', related_name='events')
+    proposal = models.OneToOneField('Proposal', null=True, blank=True)
+    event_title = models.CharField(max_length=255, help_text='Name of the Event')
+    event_speaker = models.CharField(max_length=255, help_text='Who is running the event')
+    event_description = models.TextField(help_text='Longer description of what the event i')
+
+    def sync_with_models(self):
+        """if an Event is associated with this instance, update the info"""
+        # only perform this action if Event is new
+        if self.id is None:
+            try:
+                self.event_title = self.proposal.title
+                self.event_speaker = self.proposal.user.get_full_name()
+                self.event_description = self.proposal.description
+            except Proposal.DoesNotExist:
+                pass
+
+    def __unicode__(self):
+        return self.event_title
+
 class Proposal(models.Model):
     """
-        quick, un-ideal solution to collect proposals
+    contains the proposal information submitted by account.User for
+    core.Conference
     """
-    CHOICES = (
-        ('40min', '40 Minute Talk'),
-        ('20min', '20 Minute Talk'),
+    FORMATS = (
+        ('50', '50-Minute Session',),
+        ('40', '40-Minute Session',),
+        ('20', '20-Minute Session',),
     )
-    conference = models.ForeignKey('Conference', null=True, related_name='proposals')
-    name = models.CharField(max_length=255)
-    email = models.EmailField(max_length=255)
-    speaker = models.ForeignKey('Speaker', null=True, related_name='proposals')
-    proposal_name = models.CharField(max_length=255)
-    proposal_length = models.CharField(max_length=255, choices=CHOICES)
+    conference = models.ForeignKey('Conference', related_name='proposals')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='proposals')
+    title = models.CharField(max_length=255)
+    format = models.CharField(max_length=255, null=True, blank=True, choices=FORMATS)
     description = models.TextField()
     other = models.TextField(null=True, blank=True)
     accepted = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    def sync_with_models(self):
+        """if an Event is associated with this instance, update the info"""
+        # only perform this action if Proposal has already been created
+        if self.id:
+            try:
+                self.event.event_title = self.title
+                self.event.event_speaker = self.user.get_full_name()
+                self.event.event_description = self.description
+                self.event.save()
+            except Event.DoesNotExist:
+                pass
+
     def __unicode__(self):
-        return self.proposal_name
+        return self.title
 
 class Room(models.Model):
+    """entry for a room in a Venue"""
     venue = models.ForeignKey('Venue', related_name='rooms')
-    name = models.CharField(max_length=255)
+    name = models.TextField()
 
     def __unicode__(self):
         return self.name
 
-class Schedule(models.Model):
-    conference = models.ForeignKey('Conference', null=True)
-    start_time = models.TimeField()
-    end_time = models.TimeField()
-    proposal = models.ForeignKey('Proposal', null=True, blank=True)
-    title = models.CharField(max_length=255, null=True, blank=True)
-    description = models.CharField(max_length=255, null=True, blank=True)
-    room = models.ForeignKey('Room', related_name='schedules', null=True, blank=True)
-    entire_space = models.BooleanField(default=False)
-
-class Speaker(models.Model):
-    """
-        speakers
-    """
+class Sponsor(models.Model):
+    """core info for a Sponsor specific to a Conference"""
+    conference = models.ForeignKey('Conference', related_name='sponsors')
+    category = models.ForeignKey('SponsorCategory', related_name='sponsors')
     name = models.CharField(max_length=255)
-    email = models.EmailField(max_length=255)
-    title = models.CharField(max_length=255, null=True, blank=True)
-    company = models.CharField(max_length=255, null=True, blank=True)
-
-    def active_proposals(self):
-        """ proposals active from the current conference that have been selected """
-        return self.proposals.filter(conference__active=True, accepted=True)
+    logo = models.ImageField(upload_to='sponsors/')
+    url = models.URLField()
+    sort_order = models.IntegerField(default=0)
 
     def __unicode__(self):
         return self.name
+
+    class Meta:
+        ordering = ['sort_order']
+
+class SponsorCategory(models.Model):
+    """category to group sponsors"""
+    name = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255)
+    sort_order = models.IntegerField(default=0)
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['sort_order']
+        verbose_name_plural =  'sponsor categories'
 
 class Venue(models.Model):
-    """
-        set venue information for a conference
-    """
-    conference = models.OneToOneField('Conference', blank=True)
+    """venue information for a Conference"""
+    conference = models.ForeignKey('Conference', related_name='venues')
+    sort_order = models.IntegerField(default=0)
     name = models.CharField(max_length=255)
     street = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
@@ -84,3 +138,9 @@ class Venue(models.Model):
 
     def __unicode__(self):
         return self.name
+
+def sync_with_models(sender, instance, *args, **kwargs):
+    instance.sync_with_models()
+
+pre_save.connect(sync_with_models, sender=Event)
+pre_save.connect(sync_with_models, sender=Proposal)

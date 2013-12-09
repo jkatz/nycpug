@@ -103,7 +103,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.static',
     'django.contrib.auth.context_processors.auth',
     'django.contrib.messages.context_processors.messages',
-    'app.core.context_processors.sponsors',
+    # 'app.core.context_processors.sponsors',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -126,6 +126,8 @@ TEMPLATE_DIRS = (
     PROJECT_PATH + '/nycpug/templates/',
 )
 
+WSGI_APPLICATION = 'nycpug.wsgi.application'
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -136,24 +138,36 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.markup',
-    'app.core',
-    'app.news',
-    'app.sponsor',
+    'nycpug.app.account',
+    'nycpug.app.core',
+    # 'nycpug.app.news',
     'south',
     'tinymce',
 )
 
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
+
+# for auth purposes
+AUTH_USER_MODEL = 'account.User'
+# AUTHENTICATION_BACKENDS = ('instevent.app.account.backends.EmailAuthenticationBackend',)
+
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
-# the site admins on every HTTP 500 error.
+# the site admins on every HTTP 500 error when DEBUG=False.
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
     'handlers': {
         'mail_admins': {
             'level': 'ERROR',
+            'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
         }
     },
@@ -182,3 +196,4 @@ try:
     from local_settings import *
 except ImportError:
     pass
+
