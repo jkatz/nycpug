@@ -2,6 +2,11 @@ from django import forms
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as OldUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
+from django.contrib.flatpages.models import FlatPage
+from django.contrib.flatpages.admin import FlatPageAdmin
+from django.core.urlresolvers import reverse
+
+from tinymce.widgets import TinyMCE
 
 from .models import *
 
@@ -114,3 +119,16 @@ class UserAdmin(OldUserAdmin):
     )
 
 admin.site.register(User, UserAdmin)
+
+### handle the django-tinymce work here
+class TinyMCEFlatPageAdmin(FlatPageAdmin):
+    def formfield_for_dbfield(self, db_field, **kwargs):
+        if db_field.name == 'content':
+            return db_field.formfield(widget=TinyMCE(
+                attrs={'cols': 80, 'rows': 30},
+                mce_attrs={'external_link_list_url': reverse('tinymce.views.flatpages_link_list')},
+            ))
+        return super(TinyMCEFlatPageAdmin, self).formfield_for_dbfield(db_field, **kwargs)
+
+admin.site.unregister(FlatPage)
+admin.site.register(FlatPage, TinyMCEFlatPageAdmin)

@@ -1,6 +1,7 @@
-from app.core.models import Conference
+from nycpug.app.core.models import Conference
 
 def sponsors(request):
+    """returns grouped list of all core.Sponsor objects, grouped by sponsor.Category"""
     try:
         conference = Conference.objects.filter(active=True).order_by('start_date').all()[0]
         sponsors = []

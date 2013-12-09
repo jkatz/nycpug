@@ -60,7 +60,7 @@ MEDIA_URL = '/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = PROJECT_PATH + '/nycpug/static/'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -103,7 +103,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.static',
     'django.contrib.auth.context_processors.auth',
     'django.contrib.messages.context_processors.messages',
-    # 'app.core.context_processors.sponsors',
+    'nycpug.app.core.context_processors.sponsors',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -149,7 +149,6 @@ SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 
 # for auth purposes
 AUTH_USER_MODEL = 'account.User'
-# AUTHENTICATION_BACKENDS = ('instevent.app.account.backends.EmailAuthenticationBackend',)
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

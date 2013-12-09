@@ -16,6 +16,21 @@ class Conference(models.Model):
     end_date = models.DateField()
     active = models.BooleanField(default=False)
 
+    sponsor_categories = models.ManyToManyField('SponsorCategory', blank=True, related_name='conferences')
+
+    def set_active(self):
+        """can only have one active Conference"""
+        queryset = Conference.objects.filter(active=True)
+        if self.id:
+            queryset.exclude(id=self.id)
+        if queryset.exists():
+            if self.active:
+                queryset.update(active=False)
+            elif not self.active and queryset.filter(id=self.id).exists():
+                self.active = True
+        else:
+            self.active = True
+
     def __unicode__(self):
         return self.name
 
@@ -139,8 +154,12 @@ class Venue(models.Model):
     def __unicode__(self):
         return self.name
 
+def set_active(sender, instance, *args, **kwargs):
+    instance.set_active()
+
 def sync_with_models(sender, instance, *args, **kwargs):
     instance.sync_with_models()
 
+pre_save.connect(set_active, sender=Conference)
 pre_save.connect(sync_with_models, sender=Event)
 pre_save.connect(sync_with_models, sender=Proposal)
