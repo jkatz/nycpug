@@ -6,7 +6,6 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', 'nycpug.app.core.views.home', name='home'),
-    url(r'^account/', include('nycpug.app.account.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^login/$', 'nycpug.app.account.views.login', name='login'),
     url(r'^logout/$', 'nycpug.app.account.views.logout', name='logout'),
