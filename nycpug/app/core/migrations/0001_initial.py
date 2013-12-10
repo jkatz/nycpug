@@ -8,6 +8,18 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
+        # Adding model 'Article'
+        db.create_table(u'core_article', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('conference', self.gf('django.db.models.fields.related.ForeignKey')(related_name='articles', to=orm['core.Conference'])),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['account.User'])),
+            ('title', self.gf('django.db.models.fields.CharField')(max_length=255)),
+            ('content', self.gf('django.db.models.fields.TextField')()),
+            ('created_at', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
+            ('published', self.gf('django.db.models.fields.BooleanField')(default=False)),
+        ))
+        db.send_create_signal(u'core', ['Article'])
+
         # Adding model 'Block'
         db.create_table(u'core_block', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
@@ -64,7 +76,7 @@ class Migration(SchemaMigration):
             ('conference', self.gf('django.db.models.fields.related.ForeignKey')(related_name='proposals', to=orm['core.Conference'])),
             ('user', self.gf('django.db.models.fields.related.ForeignKey')(related_name='proposals', to=orm['account.User'])),
             ('title', self.gf('django.db.models.fields.CharField')(max_length=255)),
-            ('format', self.gf('django.db.models.fields.CharField')(max_length=255, null=True, blank=True)),
+            ('format', self.gf('django.db.models.fields.CharField')(default='50', max_length=255, null=True, blank=True)),
             ('description', self.gf('django.db.models.fields.TextField')()),
             ('other', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
             ('accepted', self.gf('django.db.models.fields.BooleanField')(default=False)),
@@ -119,6 +131,9 @@ class Migration(SchemaMigration):
 
 
     def backwards(self, orm):
+        # Deleting model 'Article'
+        db.delete_table(u'core_article')
+
         # Deleting model 'Block'
         db.delete_table(u'core_block')
 
@@ -185,6 +200,16 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
+        u'core.article': {
+            'Meta': {'object_name': 'Article'},
+            'conference': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'articles'", 'to': u"orm['core.Conference']"}),
+            'content': ('django.db.models.fields.TextField', [], {}),
+            'created_at': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'published': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'title': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['account.User']"})
+        },
         u'core.block': {
             'Meta': {'object_name': 'Block'},
             'day': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'blocks'", 'to': u"orm['core.Day']"}),
@@ -199,7 +224,7 @@ class Migration(SchemaMigration):
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.TextField', [], {}),
             'slug': ('django.db.models.fields.SlugField', [], {'max_length': '255'}),
-            'sponsor_categories': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['core.SponsorCategory']", 'symmetrical': 'False'}),
+            'sponsor_categories': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "'conferences'", 'blank': 'True', 'to': u"orm['core.SponsorCategory']"}),
             'start_date': ('django.db.models.fields.DateField', [], {})
         },
         u'core.day': {
@@ -225,10 +250,11 @@ class Migration(SchemaMigration):
             'conference': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'proposals'", 'to': u"orm['core.Conference']"}),
             'created_at': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'description': ('django.db.models.fields.TextField', [], {}),
-            'format': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
+            'format': ('django.db.models.fields.CharField', [], {'default': "'50'", 'max_length': '255', 'null': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'other': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
+            'updated_at': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'proposals'", 'to': u"orm['account.User']"})
         },
         u'core.room': {

@@ -2,6 +2,15 @@ from django.conf import settings
 from django.db import models
 from django.db.models.signals import pre_save
 
+class Article(models.Model):
+    """news about the conference that goes on the main page"""
+    conference = models.ForeignKey('Conference', related_name='articles')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    title = models.CharField(max_length=255)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    published = models.BooleanField(default=False)
+
 class Block(models.Model):
     """block out a time period during the conference for a series of Events"""
     day = models.ForeignKey('Day', related_name='blocks')
