@@ -12,6 +12,12 @@ class ConferenceAdmin(admin.ModelAdmin):
     filter_horizontal = ('sponsor_categories',)
     ordering = ['-start_date']
 
+class ProposalAdmin(admin.ModelAdmin):
+    list_display = ('title', 'user', 'conference')
+    list_filter = ('conference')
+    search_fields = ('title', 'user__name',)
+
+
 class SponsorAdmin(admin.ModelAdmin):
     list_display = ('name', 'category', 'conference')
     list_filter = ('category', 'conference')
@@ -19,5 +25,6 @@ class SponsorAdmin(admin.ModelAdmin):
 
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(Conference, ConferenceAdmin)
+admin.site.register(Proposal, ProposalAdmin)
 admin.site.register(Sponsor, SponsorAdmin)
 admin.site.register(SponsorCategory)
