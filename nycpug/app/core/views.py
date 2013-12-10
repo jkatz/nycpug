@@ -1,6 +1,7 @@
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, redirect, render_to_response
 from django.template import RequestContext
+from django.views.decorators.cache import never_cache
 
 from .forms import ProposalForm
 from .models import Conference
@@ -17,6 +18,7 @@ def conference(request, slug):
         # 'articles': articles,
     }, RequestContext(request))
 
+@never_cache # causes issues with reloading data from form
 def submit(request, slug, proposal_id=None):
     """
     here the user can:
