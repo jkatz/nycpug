@@ -1,0 +1,88 @@
+<form action="" method="POST">
+  {% csrf_token %}
+  <table class="pgGenericFormTable">
+    <tr>
+      <th colspan="2">Required Information</th>
+    </tr>
+    <tr {% if form.title.errors %}class="error"{% endif %}>
+      <td>{{ form.title.label_tag }}</td>
+      <td>
+        {% if form.title.errors %}
+          {% for error in form.title.errors %}{{ error }}<br />{% endfor %}
+        {% endif %}
+        {{ form.title }}
+      </td>
+    </tr>
+    <tr {% if form.description.errors %}class="error"{% endif %}>
+      <td>{{ form.description.label_tag }}</td>
+      <td>
+        {% if form.description.errors %}
+          {% for error in form.description.errors %}{{ error }}<br />{% endfor %}
+        {% endif %}
+        {{ form.description }}
+      </td>
+    </tr>
+    <tr {% if form.other.errors %}class="error"{% endif %}>
+      <td>{{ form.other.label_tag }}</td>
+      <td>
+        {% if form.other.errors %}
+          {% for error in form.other.errors %}{{ error }}<br />{% endfor %}
+        {% endif %}
+        {{ form.other }}
+      </td>
+    </tr>
+    <tr {% if form.profile_company.errors %}class="error"{% endif %}>
+      <td>{{ form.profile_company.label_tag }}</td>
+      <td>
+        {% if form.profile_company.errors %}
+          {% for error in form.profile_company.errors %}{{ error }}<br />{% endfor %}
+        {% endif %}
+        {{ form.profile_company }}
+      </td>
+    </tr>
+    <tr {% if form.profile_title.errors %}class="error"{% endif %}>
+      <td>{{ form.profile_title.label_tag }}</td>
+      <td>
+        {% if form.profile_title.errors %}
+          {% for error in form.profile_title.errors %}{{ error }}<br />{% endfor %}
+        {% endif %}
+        {{ form.profile_title }}
+      </td>
+    </tr>
+    <tr {% if form.profile_description.errors %}class="error"{% endif %}>
+      <td>{{ form.profile_description.label_tag }}</td>
+      <td>
+        {% if form.profile_description.errors %}
+          {% for error in form.profile_description.errors %}{{ error }}<br />{% endfor %}
+        {% endif %}
+        {{ form.profile_description }}
+      </td>
+    </tr>
+    <tr>
+      <th colspan="2">Optional Information</th>
+    </tr>
+    <tr {% if form.twitter.errors %}class="error"{% endif %}>
+      <td>{{ form.twitter.label_tag }}</td>
+      <td>
+        {% if form.twitter.errors %}
+          {% for error in form.twitter.errors %}{{ error }}<br />{% endfor %}
+        {% endif %}
+        {{ form.twitter }}
+      </td>
+    </tr>
+    <tr {% if form.irc.errors %}class="error"{% endif %}>
+      <td>{{ form.irc.label_tag }}</td>
+      <td>
+        {% if form.irc.errors %}
+          {% for error in form.irc.errors %}{{ error }}<br />{% endfor %}
+        {% endif %}
+        {{ form.irc }}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align:right;">
+        <input type="submit" name="submit" value="Submit Proposal" />
+      </td>
+    </tr>
+  </table>
+</form>

@@ -82,11 +82,12 @@ class Proposal(models.Model):
     conference = models.ForeignKey('Conference', related_name='proposals')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='proposals')
     title = models.CharField(max_length=255)
-    format = models.CharField(max_length=255, null=True, blank=True, choices=FORMATS)
+    format = models.CharField(max_length=255, null=True, blank=True, choices=FORMATS, default='50')
     description = models.TextField()
     other = models.TextField(null=True, blank=True)
     accepted = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def sync_with_models(self):
         """if an Event is associated with this instance, update the info"""

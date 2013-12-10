@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}Submit a Proposal{% endblock title %}
+
+{% block content %}
+  <div id="speakers">
+    <div id="pgContentWrap">
+      <h1>Submit a Proposal</h1>
+      {% if form.errors %}
+        <div class="error">
+          There were some errors with your submission, please see below<br />
+          {{ form.non_field_errors }}
+        </div>
+      {% endif %}
+      {% if proposal %}
+        <h2>Edit Submission</h2>
+        <a href="{% url 'submit' conference.slug %}">Return to Submissions Page</a>
+        <hr />
+        {% include '_submit_form.html' %}
+      {% else %}
+      <p>We are currently looking for speakers for {{ conference.name }} on April 3rd to 4th, 2014!  Our call for proposals is open until January 10th, 2014, 12:00pm EST.  We will have notified all speakers by January 15th, 2014.</p>
+      <p>{{ conference.name }} focuses on PostgreSQL usage - how do you make optimal use of PostgreSQL in your daily life?  We want you to share your experiences using PostgreSQL - your uses cases, experiences, deployment strategies, tools you've used in and around PostgreSQL - anything that you feel you would like to highlight to the PostgreSQL community!</p>
+      <p>
+        Some topics to consider:
+        <ul>
+          <li>How to leverage new and/or innovative PostgreSQL features</li>
+          <li>Developing applications with PostgreSQL</li>
+          <li>Strategies for running PostgreSQL in production</li>
+          <li>Case studies of PostgreSQL on deployments</li>
+          <li>Managing your development process with PostgreSQL</li>
+          <li>How to use PostgreSQL extensions, e.g. PostGIS</li>
+          <li>PostgreSQL integrations with other database, i.e. leveraging foreign data wrappers</li>
+          <li>PostgreSQL Scalability + Replication</li>
+          <li>Accessible Insights into PostgreSQL Internals</li>
+          <li>Scalability strategies with PostgreSQL</li>
+        </ul><br />
+        But of course, these topics are just the tip of the iceberg - please feel free to submit any talk that you think is appropriate for PGConf NYC 2014!
+      </p>
+      <p>
+        We are asking for proposals for 50-minute sessions.  You can break up your session however you would like (e.g. 40 min talk, 10 min Q&amp;A).  If you are interested in running a 20-minute session, please contact us at <a href="mailto:contact@nycpug.org">contact@nycpug.org</a> and tell us what your thoughts are!
+      </p>
+      <hr />
+      <h2>Your Submissions</h2>
+      {% if proposals.exists %}
+        <table class="pgGenericFormTable">
+          <tr>
+            <th>Proposal Title</th>
+            <th>Submitted At</th>
+            <th>Last Updated At</th>
+            <th>&nbsp;</th>
+          </tr>
+          {% for proposal in proposals.all %}
+            <tr>
+              <td>{{ proposal.title }}</td>
+              <td>{{ proposal.created_at }}</td>
+              <td>{{ proposal.updated_at }}</td>
+              <td><a href="{% url 'submit' conference.slug proposal.id %}">Edit</a></td>
+            </tr>
+          {% endfor %}
+        </table>
+      {% else %}
+        You have not submitted any proposals yet.
+      {% endif %}
+      <hr />
+      <h2>New Submission</h2>
+      {% include '_submit_form.html' %}
+      {% endif %}
+    </div>
+    {% include '_sponsors.html' %}
+  </div>
+{% endblock content %}

@@ -69,6 +69,7 @@ class Migration(SchemaMigration):
             ('other', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
             ('accepted', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('created_at', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
+            ('updated_at', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
         ))
         db.send_create_signal(u'core', ['Proposal'])
 

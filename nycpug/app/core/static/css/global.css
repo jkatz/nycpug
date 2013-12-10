@@ -82,3 +82,7 @@ pre {
 strong, b {
   font-weight: bold;
 }
+
+.error {
+  border: 1px solid red;
+}

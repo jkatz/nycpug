@@ -702,3 +702,11 @@ img {
 .article span {
   font-style: italic;
 }
+
+#speakers table td {
+  vertical-align: top;
+}
+
+#speakers input[type="text"] {
+  width: 100%;
+}

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>NYC PostgreSQL User Group - {% block title %}Welcome{% endblock title %}</title>
+    <title>{{ conference.name }} - {% block title %}Welcome{% endblock title %}</title>
     <meta http-equiv="Content-Type" content="text/xhtml; charset=utf-8" />
     <!-- <link rel="shortcut icon" href="/favicon.ico" /> -->
     <style type="text/css" media="screen" title="Normal Text">@import url("{{ STATIC_URL }}css/screen.css");</style>
@@ -10,6 +10,18 @@
     <div id="pgContainerWrap">
       <div id="pgContainer">
         <div id="pgHeaderContainer">
+          <div id="pgSearch">
+            <div id="pgSearchNav">
+              <ul id="pgSearchNavList">
+                {% if user.is_authenticated %}
+                  <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                  <li><a href="{% url 'signup' %}">Signup</a></li>
+                  <li><a href="{% url 'login' %}">Login</a></li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
           <div id="pgHeader">
             <div id="pgHeaderLogoLeft">
               <a href="{% url 'conference' conference.slug %}">

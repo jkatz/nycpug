@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Signup{% endblock title %}
+
+{% block content %}
+  <div id="signup">
+    <div id="pgContentWrap">
+      <h1>Signup</h1>
+      <p>In order to submit a proposal to {{ conference.name }}, you need to have a registered account.  Please fill out the form below to sign up for your account.</p>
+      <p>If you are purchasing tickets, you do not need a registered account, you can purchase tickets on the <a href="#">tickets</a> page.</p>
+      <form action="" method="POST">
+        {% csrf_token %}
+        {% if form.errors %}
+          <div class="error">
+            There were some errors with your submission, please see below.<br />
+            {{ form.non_field_errors }}
+          </div>
+        {% endif %}
+        <table class="pgGenericFormTable">
+          <tr>
+            <th colspan="2">Signup</th>
+          </tr>
+          <tr {% if form.name.errors %}class="error"{% endif %}>
+            <td>{{ form.name.label_tag }}</td>
+            <td>
+              {% if form.name.errors %}
+                {% for error in form.name.errors %}{{ error }}<br />{% endfor %}
+              {% endif %}
+              {{ form.name }}
+            </td>
+          </tr>
+          <tr {% if form.email.errors %}class="error"{% endif %}>
+            <td>{{ form.email.label_tag }}</td>
+            <td>
+              {% if form.email.errors %}
+                {% for error in form.email.errors %}{{ error }}<br />{% endfor %}
+              {% endif %}
+              {{ form.email }}
+            </td>
+          </tr>
+          <tr {% if form.password.errors %}class="error"{% endif %}>
+            <td>{{ form.password.label_tag }}</td>
+            <td>
+              {% if form.password.errors %}
+                {% for error in form.password.errors %}{{ error }}<br />{% endfor %}
+              {% endif %}
+              {{ form.password }}
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <input type="submit" name="submit" value="Create Account" />
+            </td>
+          </tr>
+        </table>
+      </form>
+      <p>Already have an account? <a href="{% url 'login' %}">Login Here!</a></p>
+    </div>
+    {% include '_sponsors.html' %}
+  </div>
+{% endblock content %}
