@@ -82,7 +82,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.get_full_name()
 
     def __unicode__(self):
-        return unicode(self.id)
+        return self.name
 
 def clean_email(sender, instance, *args, **kwargs):
     """
