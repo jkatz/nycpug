@@ -18,6 +18,10 @@ def conference(request, slug):
         'articles': articles,
     }, RequestContext(request))
 
+def schedule(request, slug):
+    """list the schedule...one day"""
+    return render_to_response('schedule.html', {}, RequestContext(request))
+
 @never_cache # causes issues with reloading data from form
 def submit(request, slug, proposal_id=None):
     """
@@ -47,4 +51,3 @@ def submit(request, slug, proposal_id=None):
             'proposal': proposal,
             'proposals': proposals,
         }, RequestContext(request))
-    
