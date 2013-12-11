@@ -4,7 +4,7 @@ from django.template import RequestContext
 from django.views.decorators.cache import never_cache
 
 from .forms import ProposalForm
-from .models import Conference
+from .models import Article, Conference
 
 def home(request):
     """the homepage - which redirects to the current Conference context"""
