@@ -13,9 +13,9 @@ def home(request):
 
 def conference(request, slug):
     """the actual conference homepage"""
-    # articles = Article.objects.filter(published=True).order_by('-created_at').all()
+    articles = Article.objects.filter(published=True).order_by('-created_at').all()
     return render_to_response('home.html', {
-        # 'articles': articles,
+        'articles': articles,
     }, RequestContext(request))
 
 @never_cache # causes issues with reloading data from form
