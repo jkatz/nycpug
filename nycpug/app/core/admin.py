@@ -13,8 +13,8 @@ class ConferenceAdmin(admin.ModelAdmin):
     ordering = ['-start_date']
 
 class ProposalAdmin(admin.ModelAdmin):
-    list_display = ('title', 'user', 'conference')
-    list_filter = ('accepted',)
+    list_display = ('title', 'user', 'conference', 'accepted',)
+    list_filter = ('conference', 'accepted',)
     search_fields = ('title', 'user__name',)
 
 class SponsorAdmin(admin.ModelAdmin):
