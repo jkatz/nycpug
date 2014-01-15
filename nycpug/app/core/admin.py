@@ -14,6 +14,7 @@ class ConferenceAdmin(admin.ModelAdmin):
 
 class ProposalAdmin(admin.ModelAdmin):
     list_display = ('title', 'user', 'conference')
+    list_filter = ('accepted',)
     search_fields = ('title', 'user__name',)
 
 class SponsorAdmin(admin.ModelAdmin):
