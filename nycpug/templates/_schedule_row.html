@@ -1,6 +1,6 @@
 <tr>
-  <td>{{ block.start_time }}</td>
-  <td>{{ block.end_time }}</td>
+  <td>{{ block.start_time|time:"g:iA" }}</td>
+  <td>{{ block.end_time|time:"g:iA" }}</td>
   {% for event in events %}
   <td>
     {% if event %}
