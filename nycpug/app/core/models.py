@@ -17,6 +17,9 @@ class Block(models.Model):
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
 
+    def __unicode__(self):
+        return "%s %s-%s" % (self.day, self.start_time, self.end_time)
+
 class Conference(models.Model):
     """the big one - stores overall conference information"""
     name = models.TextField()
