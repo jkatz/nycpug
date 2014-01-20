@@ -22,7 +22,7 @@ def render_schedule_for_day(day):
         events = [None] * len(rooms)
         for event in block.events.all():
             if event.is_full_block:
-                events[0] = event
+                events = [event]
             else:
                 events[rooms.index(event.room)] = event
         html += '    ' + render_to_string('_schedule_row.html', {
