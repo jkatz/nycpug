@@ -2,11 +2,18 @@
   <td>{{ block.start_time|time:"g:iA" }}</td>
   <td>{{ block.end_time|time:"g:iA" }}</td>
   {% for event in events %}
-  <td>
-    {% if event %}
-      <strong>{{ event.event_title }}</strong><br />
-      <em>{{ event.event_speaker }}</em>
+    {% if event.is_full_block %}
+      <td colspan="{{ rooms|length }}">
+        <strong>{{ event.event_title }}</strong><br />
+        <em>{{ event.event_speaker }}</em>
+      </td>
+    {% else %}
+      <td>
+        {% if event %}
+          <strong>{{ event.event_title }}</strong><br />
+          <em>{{ event.event_speaker }}</em>
+        {% endif %}
+      </td>
     {% endif %}
-  </td>
   {% endfor %}
 </tr>

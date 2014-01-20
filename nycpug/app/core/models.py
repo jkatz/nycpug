@@ -68,12 +68,13 @@ class Event(models.Model):
     proposal = models.OneToOneField('Proposal', null=True, blank=True)
     event_title = models.CharField(max_length=255, blank=True, help_text='Name of the Event')
     event_speaker = models.CharField(max_length=255, blank=True, help_text='Who is running the event')
-    event_description = models.TextField(blank=True, help_text='Longer description of what the event i')
+    event_description = models.TextField(blank=True, help_text='Longer description of what the event is')
+    is_full_block = models.BooleanField(default=False, help_text='Check this if this is the only event in the block')
 
     def sync_with_models(self):
         """if an Event is associated with this instance, update the info"""
         # only perform this action if Event is new
-        if self.id is None:
+        if self.id is None and self.proposal:
             try:
                 self.event_title = self.proposal.title
                 self.event_speaker = self.proposal.user.get_full_name()

@@ -26,7 +26,10 @@ def render_schedule_for_day(day):
     for block in day.blocks.order_by('start_time').all(): # line up the blocks
         events = [None] * len(rooms)
         for event in block.events.all():
-            events[rooms.index(event.room)] = event
+            if event.is_full_block:
+                events[0] = event
+            else:
+                events[rooms.index(event.room)] = event
         html += '    ' + render_to_string('_schedule_row.html', {
             'rooms': rooms,
             'block': block,
