@@ -1,11 +1,30 @@
-<ul id="pgTopNavList">
-  <li><a href="{% url 'conference' conference.slug %}">Home</a></li>
-  <li><a href="/2014/about/">About</a></li>
-  <li><a href="/2014/venue/">Venue</a></li>
-  <li><a href="/2014/tickets/">Tickets</a></li>
-  <li><a href="{% url 'submit' conference.slug %}">Submit a Proposal</a></li>
-  <li><a href="{% url 'schedule' conference.slug %}">Schedule</a></li>
-  <li><a href="/2014/what-to-do/">Attractions</a></li>
-  <li><a href="/2014/sponsor/">Sponsor</a></li>
-  <li><a href="/2014/contact/">Contact</a></li>
-</ul>
+<header class="top-bar" id="topbar">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <a class="logo pull-left" href="{% url 'conference' conference.slug %}" title="{{ conference.name }}"><span></span></a>
+        <div class="navbar main-nav pull-right">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+          <nav>
+            <div class="nav-collapse collapse">
+              <ul id="mainnav" class="nav">
+                <li><a href="{% url 'conference' conference.slug %}">Home</a></li>
+                <li><a href="/{{ conference.slug }}/about/">About</a></li>
+                <li><a href="/{{ conference.slug }}/venue/">Venue</a></li>
+                <li><a href="/{{ conference.slug }}/tickets/">Tickets</a></li>
+                <!-- <li><a href="{% url 'submit' conference.slug %}">Submit a Proposal</a></li> -->
+                <li><a href="{% url 'schedule' conference.slug %}">Schedule</a></li>
+                <li><a href="/{{ conference.slug }}/what-to-do/">Attractions</a></li>
+                <li><a href="/{{ conference.slug }}/sponsor/">How to Sponsor</a></li>
+                <li><a href="/{{ conference.slug }}/contact/">Contact</a></li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+        <!-- end navbar --> 
+      </div>
+    </div>
+    <!-- end row --> 
+  </div>
+  <!-- end container --> 
+</header>

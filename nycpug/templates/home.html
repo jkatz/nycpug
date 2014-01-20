@@ -2,16 +2,41 @@
 {% load markup %}
 
 {% block content %}
-  <div id="home">
-    <div id="pgContentWrap">
-      {% for article in articles %}
-        <div class='article'>
-          <h1>{{ article.title }}</h1>
-          <span>Published {{ article.created_at }} by {{ article.user.get_full_name }}</span>
-          {{ article.content|markdown }}
-        </div>
-      {% endfor %}
+  <section id="intro">
+    <div class="container">
+      <div class="flexslider">
+        <ul class="slides">
+          <li> 
+            <!-- slide 1 -->
+            <div class="row jumbotron">
+              <div class="span12 text-center">
+                <h1>{{ conference.name }}</h1>
+                <h3>{{ conference.start_date|date:"F j" }} - {{ conference.end_date|date:"j, Y" }}</h3>
+                <a href="#" class="btn btn-large btn-primary">Tickets</a>
+              </div>
+              <!-- end span12 --> 
+            </div>
+            <!-- end row --> 
+          </li>
+          <!-- endslide 1 -->
+        </ul>
+      </div>
+      <!-- end flexslider --> 
     </div>
-    {% include '_sponsors.html' %}
-  </div>
+    <!-- end container --> 
+  </section>
+  <!-- end intro section --> 
+  <section id="register">
+    <div class="container">
+      <div class="row">
+        <div id="countdown"></div>
+        <div class="span12 white register-box text-center">
+          <h2 class="register-title">Tickets Available Today From $299</h2>
+          <a href="/{{ conference.slug }}/tickets/" class="btn btn-large btn-primary">Register Now</a>
+        </div>
+      </div>
+      <!-- end row --> 
+    </div>
+    <!-- end container --> 
+  </section>
 {% endblock content %}

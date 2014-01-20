@@ -15,6 +15,7 @@ def sponsors(request):
         for category in conference.sponsor_categories.all():
             sponsors.append({
                 'category': category.name,
+                'css_class': category.css_class,
                 'sponsors': [sponsor for sponsor in conference.sponsors.filter(category=category).all()]
             })
         return { 'sponsors': sponsors }

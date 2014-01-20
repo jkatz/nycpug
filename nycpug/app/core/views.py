@@ -4,7 +4,7 @@ from django.template import RequestContext
 from django.views.decorators.cache import never_cache
 
 from .forms import ProposalForm
-from .models import Article, Conference
+from .models import Article, Conference, Room
 
 def home(request):
     """the homepage - which redirects to the current Conference context"""
@@ -21,6 +21,7 @@ def conference(request, slug):
 def schedule(request, slug):
     """list the schedule...one day"""
     return render_to_response('schedule.html', {}, RequestContext(request))
+
 
 @never_cache # causes issues with reloading data from form
 def submit(request, slug, proposal_id=None):

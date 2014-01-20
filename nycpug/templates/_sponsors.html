@@ -1,18 +1,40 @@
-<div id="pgSideWrap">
-  <h1>{{ conference.name }} Sponsors</h1>
-  {% if sponsors %}
-    {% regroup sponsors by category as sponsor_list %}
-    {% for category in sponsor_list %}
-      <h2>{{ category.grouper }}</h2>
-      {% for item in category.list %}
-        {% for sponsor in item.sponsors %}
-          <p>
-            <a href="{{ sponsor.url }}">
-              <img src="{{ sponsor.logo.url }}" />
-            </a>
-          </p>
+<section id="sponsors">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <div class="module-header sponsors-header">
+          <h4>{{ conference.name }} Sponsors</h4>
+        </div>
+      </div>
+      <!-- end module-header -->
+      <div class="span12 hero-unit text-center">
+        <h2>{{ conference.name }} would not take place without the generous support for our sponsors.</h2>
+        <p><a href="/{{ conference.slug }}/sponsor/">Information about available sponsorship opportunities</a> can be found <a href="/{{ conference.slug }}/sponsor/">on this page</a></p>
+      </div>
+      <!-- end hero-unit -->
+      {% if sponsors %}
+        {% regroup sponsors by category as sponsor_list %}
+        {% for category in sponsor_list %}
+          <div class="span12 text-center">
+            <div class="subheader">
+              <h4>{{ category.grouper }}</h4>
+            </div>
+            <!-- --> 
+          </div>
+          {% for item in category.list %}
+            <div class="text-center">
+              {% for sponsor in item.sponsors %}
+                <div class="{{ item.css_class }} text-center">
+                  <a href="{{ sponsor.url }}"><img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}" class="sponsor-logo"></a>
+                </div>
+              {% endfor %}
+            </div>
+          {% endfor %}
         {% endfor %}
-      {% endfor %}
-    {% endfor %}
-  {% endif %}
-</div>
+      {% endif %}
+      <!-- end span12 -->
+    </div>
+    <!-- end row --> 
+  </div>
+  <!-- end container --> 
+</section>
