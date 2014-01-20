@@ -1054,13 +1054,17 @@ a.instagram:hover {
 	-webkit-transition: all 200ms ease;
 	-o-transition: all 200ms ease;
 	transition: all 200ms ease;
-	width: 70%;
+	width: auto;
 }
 .sponsor-logo:hover {
 	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
 	-moz-opacity: 0.5;
 	-khtml-opacity: 0.5;
 	opacity: 0.5;
+}
+.sponsor-link {
+	display: inline-block;
+	margin: 1em;
 }
 /* News Section */
 .news-items {
