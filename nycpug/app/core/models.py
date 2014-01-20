@@ -52,6 +52,9 @@ class Day(models.Model):
     def __unicode__(self):
         return self.event_date.strftime('%m-%d-%Y')
 
+    class Meta:
+        ordering = ['event_date']
+
 class Event(models.Model):
     """
     keeps information for an Event in the Conference
@@ -60,9 +63,9 @@ class Event(models.Model):
     block = models.ForeignKey('Block', related_name='events')
     room = models.ForeignKey('Room', related_name='events')
     proposal = models.OneToOneField('Proposal', null=True, blank=True)
-    event_title = models.CharField(max_length=255, help_text='Name of the Event')
-    event_speaker = models.CharField(max_length=255, help_text='Who is running the event')
-    event_description = models.TextField(help_text='Longer description of what the event i')
+    event_title = models.CharField(max_length=255, blank=True, help_text='Name of the Event')
+    event_speaker = models.CharField(max_length=255, blank=True, help_text='Who is running the event')
+    event_description = models.TextField(blank=True, help_text='Longer description of what the event i')
 
     def sync_with_models(self):
         """if an Event is associated with this instance, update the info"""
@@ -141,6 +144,7 @@ class SponsorCategory(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255)
     sort_order = models.IntegerField(default=0)
+    css_class = models.TextField(null=True, blank=True)
 
     def __unicode__(self):
         return self.name

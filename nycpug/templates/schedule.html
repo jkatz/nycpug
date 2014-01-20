@@ -1,43 +1,37 @@
 {% extends 'base.html' %}
+{% load schedule_tags %}
 
 {% block content %}
-  <div id="speakers">
-    <div id="pgContentWrap">
-      <h1>Schedule</h1>
-      <p>{{ conference.name }} focuses on how people use PostgreSQL, from the perspective of developers, DBAs, systems administrators, business-intelligence analysts, and decisions makers.</p>
-      <p>A special addition included in PGConf NYC 2014 is the one-day, "PostgreSQL Security" track that is being sponsored by <a href="http://crunchydatasolutions.com" target="_blank">Crunchy Data Solutions</a>, which will include topics such as the basics of PostgreSQL Security, how to achieve PCI compliance with PostgreSQL, advanced PostgreSQL security features, and presentations from U.S. government and financial sector employees.</p>
-      <p>Check back here on January 15th, 2014 for the full schedule for {{ conference.name }}</p>
-      {% comment %}
-      <p>Below is the schedule of talks for {{ conference.name }} on {{ conference.start_date|date:"F jS, Y" }} at the {{ conference.venue.name }} at {{ conference.venue.street }} {{ conference.venue.city }}, {{ conference.venue.state }} {{ conference.venue.zip }}</p>
-      <p>{{ conference.name }} will take place all day and includes lunch and a complimentary networking reception with open bar and food at the end of the day.</p>
-      <p>Tickets for {{ conference.name }} can be purchased on the <a href='{% url registration %}'>registration</a> page.</p>
-      <p>If you have any questions, please contact us at <a href='mailto:contact@nycpug.org'>contact@nycpug.org</a></p>
-      <table border='1'>
-        <tr>
-          <th>Start</th>
-          <th>End</th>
-          {% for room in room_positions %}
-            <th style='width: 250px;'>{{ room.name }}</th>
-          {% endfor %}
-        </tr>
-        {% for schedule in master_list %}
-          <tr>
-            <td>{{ schedule.0 }}</td>
-            <td>{{ schedule.1 }}</td>
-            {% if schedule.2.0.entire_space %}
-              {% include '_schedule_item.html' with item=schedule.2.0 %}
-            {% else %}
-              {% for item in schedule.2 %}
-                {% include '_schedule_item.html' with item=item %}
-              {% endfor %}
-            {% endif %}
-          </tr>
+<section id="schedule">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <div class="module-header schedule-header">
+          <h4>Schedule</h4>
+        </div>
+        <!-- end module-header --> 
+      </div>
+      <div class="span12 hero-unit text-center">
+        <h4>
+          {{ conference.name }} focuses on how people use PostgreSQL, from the perspective of developers, DBAs, systems administrators, business-intelligence analysts, and decisions makers.<br>
+          <br/>
+          A special addition included in PGConf NYC 2014 is the one-day, "PostgreSQL Security" track that is being sponsored by <a href="http://crunchydatasolutions.com" target="_blank">Crunchy Data Solutions</a>, which will include topics such as the basics of PostgreSQL Security, how to achieve PCI compliance with PostgreSQL, advanced PostgreSQL security features, and presentations from U.S. government and financial sector employees.<br />
+          <br />
+          Tickets for {{ conference.name }} can be purchased on the <a href="/{{ conference.slug }}/tickets/">registration</a> page.
+        </h4>
+      </div>
+      <!-- end span12 -->
+      <div class="span12">
+        {% for day in conference.days.all %}
+          <div class="module-header schedule-header">
+            <h3>{{ day.event_date }}</h3>
+          </div>
+          {% render_schedule_for_day day %}
         {% endfor %}
-      </table>
-      <br />
-      {% endcomment %}
-      <div style="width:100%; text-align:left;" ><iframe  src="https://www.eventbrite.com/tickets-external?eid=5944459037&ref=etckt&v=2" frameborder="0" height="339" width="100%" vspace="0" hspace="0" marginheight="5" marginwidth="5" scrolling="auto" allowtransparency="true"></iframe><div style="font-family:Helvetica, Arial; font-size:10px; padding:5px 0 5px; margin:2px; width:100%; text-align:left;" ><a style="color:#ddd; text-decoration:none;" target="_blank" href="http://www.eventbrite.com/r/etckt">Sell Tickets Online</a> <span style="color:#ddd;">through</span> <a style="color:#ddd; text-decoration:none;" target="_blank" href="http://www.eventbrite.com?ref=etckt">Eventbrite</a></div></div>
+      </div>
     </div>
-    {% include '_sponsors.html' %}
+    <!-- end row --> 
   </div>
+  <!-- end container --> 
+</section>
 {% endblock content %}

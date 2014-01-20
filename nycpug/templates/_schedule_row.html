@@ -1,0 +1,12 @@
+<tr>
+  <td>{{ block.start_time }}</td>
+  <td>{{ block.end_time }}</td>
+  {% for event in events %}
+  <td>
+    {% if event %}
+      <strong>{{ event.event_title }}</strong><br />
+      <em>{{ event.event_speaker }}</em>
+    {% endif %}
+  </td>
+  {% endfor %}
+</tr>

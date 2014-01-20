@@ -187,7 +187,7 @@ CACHE_MIDDLEWARE_KEY_PREFIX = 'nycpug'
 # tinymce conf
 # TINYMCE_JS_URL (default: settings.MEDIA_URL + 'js/tiny_mce/tiny_mce.js')
 # TINYMCE_JS_ROOT (default: settings.MEDIA_ROOT + 'js/tiny_mce')
-TINYMCE_DEFAULT_CONFIG  = {'theme': "advanced", 'relative_urls': False }
+TINYMCE_DEFAULT_CONFIG  = {'theme': "advanced", 'relative_urls': False, 'verify_html': False }
 TINYMCE_SPELLCHECKER = False
 TINYMCE_COMPRESSOR = False
 TINYMCE_FILEBROWSER = False
