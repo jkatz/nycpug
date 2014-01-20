@@ -17,7 +17,7 @@
           <br/>
           A special addition included in PGConf NYC 2014 is the one-day, "PostgreSQL Security" track that is being sponsored by <a href="http://crunchydatasolutions.com" target="_blank">Crunchy Data Solutions</a>, which will include topics such as the basics of PostgreSQL Security, how to achieve PCI compliance with PostgreSQL, advanced PostgreSQL security features, and presentations from U.S. government and financial sector employees.<br />
           <br />
-          Tickets for {{ conference.name }} can be purchased on the <a href="/{{ conference.slug }}/tickets/">registration</a> page.
+          Tickets for {{ conference.name }} can be purchased below the schedule or on the <a href="/{{ conference.slug }}/tickets/">registration</a> page.
         </h4>
       </div>
       <!-- end span12 -->
@@ -28,6 +28,29 @@
           </div>
           {% render_schedule_for_day day %}
         {% endfor %}
+      </div>
+    </div>
+    <!-- end row --> 
+  </div>
+  <!-- end container --> 
+</section>
+<section id="speakers">
+  <div class="container">
+    <div class="row">
+      <div class="span12 hero-unit text-center white">
+        <h2>Come Join Us!</h2>
+      </div>
+      <!-- end hero-unit -->
+      <div class="span12">
+        <div class="divider-space"></div>
+      </div>
+      <div class="span12">
+        <div style="width:100%; text-align:left;" ><iframe  src="http://www.eventbrite.com/tickets-external?eid=5944459037&ref=etckt&v=2" frameborder="0" height="339" width="100%" vspace="0" hspace="0" marginheight="5" marginwidth="5" scrolling="auto" allowtransparency="true"></iframe><div style="font-family:Helvetica, Arial; font-size:10px; padding:5px 0 5px; margin:2px; width:100%; text-align:left;" ><a style="color:#ddd; text-decoration:none;" target="_blank" href="http://www.eventbrite.com/r/etckt">Event Registration Online</a><span style="color:#ddd;"> for </span><a style="color:#ddd; text-decoration:none;" target="_blank" href="https://pgconfnyc2014.eventbrite.com/?ref=etckt">PGConf NYC 2014</a> <span style="color:#ddd;">powered by</span> <a style="color:#ddd; text-decoration:none;" target="_blank" href="http://www.eventbrite.com?ref=etckt">Eventbrite</a></div></div>
+      </div>
+      <div class="span12 text-center white">
+        <p>If you are a student and interested in attending {{ conference.name }}, we are offering a discount rate of $59 for admission. Please email <a href="mailto:contact@nycpug.org">contact@nycpug.org</a> to register.</p>
+        <p>{{ conference.name }} is hosted by the New York City PostgreSQL User Group (NYCPUG) c/o United States PostgreSQL Association, which is a registered 501(c)(3). All ticket sales go directly to the program of {{ conference.name }} and any prcoeeds are used for pizza at NYCPUG montly meetups and next year's conference.</p>
+        <p>If you have any questions, please reach out to us at <a href="mailto:contact@nycpug.org">contact@nycpug.org</a></p>
       </div>
     </div>
     <!-- end row --> 
