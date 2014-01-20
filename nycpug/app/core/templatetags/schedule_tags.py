@@ -9,11 +9,6 @@ def render_schedule_for_day(day):
     """render a full schedule for a core.Day"""
     html = '<table border="1">\n'
     # first need to determine the overall order in which to render things
-    # schedule_matrix = {}
-    # schedule_matrix[day.id] = {
-    #     'blocks': [],
-    #     'rooms': [],
-    # }
     rooms = []
     # line up the rooms...also had to deal with a weird Django issue hence the day__id
     for room in Room.objects.filter(events__block__day__id=day.id).distinct().order_by('name').all():

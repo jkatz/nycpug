@@ -20,6 +20,9 @@ class Block(models.Model):
     def __unicode__(self):
         return "%s %s-%s" % (self.day, self.start_time, self.end_time)
 
+    class Meta:
+        ordering = ['day__event_date', 'start_time']
+
 class Conference(models.Model):
     """the big one - stores overall conference information"""
     name = models.TextField()
