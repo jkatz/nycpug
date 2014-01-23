@@ -72,6 +72,7 @@ class Event(models.Model):
     event_title = models.CharField(max_length=255, blank=True, help_text='Name of the Event')
     event_speaker = models.CharField(max_length=255, blank=True, help_text='Who is running the event')
     event_description = models.TextField(blank=True, help_text='Longer description of what the event is')
+    event_bio = models.TextField(blank=True, help_text='Description of the speaker')
     is_full_block = models.BooleanField(default=False, help_text='Check this if this is the only event in the block')
 
     def sync_with_models(self):
@@ -82,6 +83,7 @@ class Event(models.Model):
                 self.event_title = self.proposal.title
                 self.event_speaker = self.proposal.user.get_full_name()
                 self.event_description = self.proposal.description
+                self.event_bio = self.proposal.user.profile.description
             except Proposal.DoesNotExist:
                 pass
 
