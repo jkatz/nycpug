@@ -10,7 +10,13 @@
     {% else %}
       <td>
         {% if event %}
-          <strong>{{ event.event_title }}</strong><br />
+          <strong>
+          {% if event.proposal %}
+            <a href="{% url 'speaker' block.day.conference.slug event.id %}">{{ event.event_title }}</a>
+          {% else %}
+            {{ event.event_title }}
+          {% endif %}
+          </strong><br />
           <em>{{ event.event_speaker }}</em>
         {% endif %}
       </td>
