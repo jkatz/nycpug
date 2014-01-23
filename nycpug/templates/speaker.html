@@ -16,7 +16,7 @@
         <h1>{{ event.event_title }}</h1>
         <h3>{{ event.event_speaker }}</h3>
         <h4><em>{{ event.block.day.event_date }}, {{ event.block.start_time|time:"g:iA" }} - {{ event.block.end_time|time:"g:iA" }}</em></h4>
-        <h4>{{ event.event_description|markdown }}</h4>
+        <h4 class="text-left">{{ event.event_description|markdown }}</h4>
       </div>
       <!-- end hero-unit -->
       <div class="span12">
@@ -24,7 +24,7 @@
       </div>
       <div class="span12 text-center">
         <h4>About the Speaker</h4>
-        <p>{{ event.event_bio|markdown }}
+        <p class="text-left">{{ event.event_bio|markdown }}
       </div>
       <div class="span12 text-right">
         <h4><a href="{% url 'schedule' conference.slug %}">Return to Schedule</a></h4>
