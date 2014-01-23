@@ -1,15 +1,9 @@
 <section id="sponsors">
   <div>
     <div>
-      <div>
-        <div class="module-header sponsors-header">
-          <h4>{{ conference.name }} Sponsors</h4>
-        </div>
-      </div>
       <!-- end module-header -->
       <div class="hero-unit text-center">
-        <h2>{{ conference.name }} would not take place without the generous support for our sponsors.</h2>
-        <p><a href="/{{ conference.slug }}/sponsor/">Information about available sponsorship opportunities</a> can be found <a href="/{{ conference.slug }}/sponsor/">on this page</a></p>
+        <h4>{{ conference.name }} would not take place without the generous support for our sponsors.</h4>
       </div>
       <!-- end hero-unit -->
       {% if sponsors %}
@@ -33,6 +27,9 @@
         {% endfor %}
       {% endif %}
       <!-- end span12 -->
+      <div class="hero-unit text-center">
+        <p><a href="/{{ conference.slug }}/sponsor/">Information about available sponsorship opportunities</a> can be found <a href="/{{ conference.slug }}/sponsor/">on this page</a></p>
+      </div>
     </div>
     <!-- end row --> 
   </div>
