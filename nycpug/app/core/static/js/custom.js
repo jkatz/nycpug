@@ -2,7 +2,6 @@
 
 // Javascripts //
 $(document).ready(function () {
-	
 	// Top Bar //
 	$('.top-bar nav').addClass('hidden');
 	$('.menu-link').on('click', function (
@@ -102,7 +101,7 @@ $(document).ready(function () {
 		// 'Y' years, 'O' months, 'W' weeks, 'D' days, 'H' hours, 'M' minutes, 'S' seconds 
 		// until: '-1m +1d', for demo
 		timezone: -4, // The timezone (hours or minutes from GMT) for the target times, or null for client local 
-		layout: '{d<}<div class="span3"><div class="digit-container">{dn}<span class="label-container">{dl}</span></div></div>{d>}{h<}<div class="span3"><div class="digit-container">{hn}<span class="label-container">{hl}</span></div></div>{h>}{m<}<div class="span3"><div class="digit-container">{mn}<span class="label-container">{ml}</span></div></div>{m>}{s<}<div class="span3"><div class="digit-container">{sn}<span class="label-container">{sl}</span></div></div>{s>}',
+		layout: '{d<}<div><div class="digit-container">{dn}<span class="label-container">{dl}</span></div></div>{d>}{h<}<div><div class="digit-container">{hn}<span class="label-container">{hl}</span></div></div>{h>}{m<}<div><div class="digit-container">{mn}<span class="label-container">{ml}</span></div></div>{m>}{s<}<div><div class="digit-container">{sn}<span class="label-container">{sl}</span></div></div>{s>}',
 		timeSeparator: '', // Separator for time periods 
 		isRTL: false, // True for right-to-left languages, false for left-to-right 
 		format: 'dHMS', // Format for display - upper case for always, lower case only if non-zero,

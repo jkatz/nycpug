@@ -2,76 +2,78 @@
 {% load markup %}
 
 {% block content %}
-  <section id="intro">
-    <div>
-      <div class="flexslider">
-        <ul class="slides">
-          <li> 
-            <!-- slide 1 -->
-            <div class="jumbotron">
-              <div class="text-center">
-                <h1>{{ conference.name }}</h1>
-                <h4>PostgreSQL in the Big City.</h4>
-                <h3>{{ conference.start_date|date:"F j" }} - {{ conference.end_date|date:"j, Y" }}</h3>
-                <a href="#" class="btn btn-large btn-primary">Tickets</a>
+  <div id="home">
+    <section id="intro">
+      <div>
+        <div class="flexslider">
+          <ul class="slides">
+            <li> 
+              <!-- slide 1 -->
+              <div class="jumbotron">
+                <div class="text-center">
+                  <h1>{{ conference.name }}</h1>
+                  <h4>PostgreSQL in the Big City.</h4>
+                  <h3>{{ conference.start_date|date:"F j" }} - {{ conference.end_date|date:"j, Y" }}</h3>
+                  <a href="#" class="btn btn-large btn-primary">Tickets</a>
+                </div>
+                <!-- end span12 --> 
               </div>
-              <!-- end span12 --> 
-            </div>
-            <!-- end row --> 
-          </li>
-          <!-- endslide 1 -->
-        </ul>
-      </div>
-      <!-- end flexslider --> 
-    </div>
-    <!-- end container --> 
-  </section>
-  <section id="about">
-    <div class="jcontainer">
-      <div>
-        <div class="hero-unit text-center">
-          <h1>Learn PostgreSQL.<br/>Experience New York.</h1><Br />
-          <h3>What happens when you combine the database that does not quit with the city that never sleeps?</h3>
+              <!-- end row --> 
+            </li>
+            <!-- endslide 1 -->
+          </ul>
         </div>
-        <!-- end hero-unit -->
+        <!-- end flexslider --> 
+      </div>
+      <!-- end container --> 
+    </section>
+    <section id="about">
+      <div class="container">
         <div>
-          <div class="divider-space"></div>
+          <div class="hero-unit text-center">
+            <h1>Learn PostgreSQL.<br/>Experience New York.</h1><Br />
+            <h3>What happens when you combine the database that does not quit with the city that never sleeps?</h3>
+          </div>
+          <!-- end hero-unit -->
+          <div>
+            <div class="divider-space"></div>
+          </div>
+          <div>
+            <p>Throughout its history, PostgreSQL has proven itself to be reliant, performant, and robust - three attributes that are also emblematic of New York.</p>
+            <p>Learn from talks given by PostgreSQL core team members and major contributors, power users from large corporations and also startups, systems administrators, developers, and more.</p>
+            <p>Come join hundreds of other PostgreSQL users in New York at our PostgreSQL user-focused on April 3 - 4 at the New York Marriott Downtown.</p>
+          </div>
         </div>
+        <!-- end row --> 
+      </div>
+      <!--end container--> 
+    </section>
+    <section id="news">
+      <div class="container">
         <div>
-          <p>Throughout its history, PostgreSQL has proven itself to be reliant, performant, and robust - three attributes that are also emblematic of New York.</p>
-          <p>Learn from talks given by PostgreSQL core team members and major contributors, power users from large corporations and also startups, systems administrators, developers, and more.</p>
-          <p>Come join hundreds of other PostgreSQL users in New York at our PostgreSQL user-focused on April 3 - 4 at the New York Marriott Downtown.</p>
+          <div class="hero-unit text-center white">
+            <h2>Latest News</h2>
+          </div>
+          <div class="text-center">
+            <a class="twitter-timeline" href="https://twitter.com/PGConfNYC" data-widget-id="425134920004935680">Tweets by @PGConfNYC</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+          </div>
         </div>
       </div>
-      <!-- end row --> 
-    </div>
-    <!--end container--> 
-  </section>
-  <section id="news">
-    <div>
-      <div>
-        <div class="hero-unit text-center white">
-          <h2>Latest News</h2>
+    </section>
+    <!-- end intro section --> 
+    <section id="register">
+      <div class="container">
+        <div>
+          <div id="countdown"></div>
+          <div class="white register-box text-center">
+            <h2 class="register-title">Tickets Available Today From $299</h2>
+            <a href="/{{ conference.slug }}/tickets/" class="btn btn-large btn-primary">Register Now</a>
+          </div>
         </div>
-        <div class="text-center">
-          <a class="twitter-timeline" href="https://twitter.com/PGConfNYC" data-widget-id="425134920004935680">Tweets by @PGConfNYC</a>
-          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-        </div>
+        <!-- end row --> 
       </div>
-    </div>
-  </section>
-  <!-- end intro section --> 
-  <section id="register">
-    <div>
-      <div>
-        <div id="countdown"></div>
-        <div class="white register-box text-center">
-          <h2 class="register-title">Tickets Available Today From $299</h2>
-          <a href="/{{ conference.slug }}/tickets/" class="btn btn-large btn-primary">Register Now</a>
-        </div>
-      </div>
-      <!-- end row --> 
-    </div>
-    <!-- end container --> 
-  </section>
+      <!-- end container --> 
+    </section>
+</div>
 {% endblock content %}
