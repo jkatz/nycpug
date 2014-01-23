@@ -45,7 +45,8 @@ body p, body h4 {
     height: auto;
     opacity: 0.3;
 }
-#topbar:hover {
+#topbar:hover, 
+#topbar.active {
     opacity: 1.0;
     background: #fff;
 }
@@ -55,9 +56,6 @@ body p, body h4 {
 }
 #topbar .navbar .hidden {
     top: 10px;
-}
-#topbar .main-nav.pull-right {
-    width: 70%;
 }
 #topbar .logo {
     top: 10px;
@@ -143,6 +141,12 @@ body .text-center {
  *----------------------------------------------- */
 @media (max-width: 980px) {
     #countdown > div {
+        width: 50%;
+    }
+    #topbar .main-nav.pull-left {
+        width: 50%;
+    }
+    #topbar .main-nav.pull-right {
         width: 50%;
     }
 }

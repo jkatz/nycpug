@@ -4,11 +4,12 @@
 $(document).ready(function () {
 	// Top Bar //
 	$('.top-bar nav').addClass('hidden');
-	$('.menu-link').on('click', function (
-		e) {
+	$('.menu-link').on('click', function (e) {
 		e.preventDefault();
-		$('.top-bar nav').toggleClass(
-			'hidden');
+		$('.top-bar nav').toggleClass('hidden');
+	});
+	$('.navbar button').on('click', function (e) {
+		$('.top-bar').toggleClass('active');
 	});
 	$(window).scroll(function () {
 		if ($(window).scrollTop() <= 50) {
