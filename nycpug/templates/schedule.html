@@ -5,17 +5,11 @@
 <section id="schedule">
   <div class="container">
     <div class="row">
-      <div class="span12">
-        <div class="module-header schedule-header">
-          <h4>Schedule</h4>
-        </div>
-        <!-- end module-header --> 
-      </div>
-      <div class="span12 hero-unit text-center">
+      <div class="span12 hero-unit">
         <h4>
-          {{ conference.name }} focuses on how people use PostgreSQL, from the perspective of developers, DBAs, systems administrators, business-intelligence analysts, and decisions makers.<br>
+          {{ conference.name }} is from {{ conference.start_date }} to {{ conference.end_date }} at the <a href="/{{ conference.slug }}/venue/">New York Marriott Downtown</a> and focuses on how people use PostgreSQL, from the perspective of developers, DBAs, systems administrators, business-intelligence analysts, and decisions makers.<br>
           <br/>
-          A special addition included in PGConf NYC 2014 is the one-day, "PostgreSQL Security" track that is being sponsored by <a href="http://crunchydatasolutions.com" target="_blank">Crunchy Data Solutions</a>, which will include topics such as the basics of PostgreSQL Security, how to achieve PCI compliance with PostgreSQL, advanced PostgreSQL security features, and presentations from U.S. government and financial sector employees.<br />
+          A special addition included in PGConf NYC 2014 is the one-day, "PostgreSQL Security" track that is being sponsored by <a href="http://crunchydatasolutions.com" target="_blank">Crunchy Data Solutions</a>, which will include topics such as the basics of PostgreSQL Security, how to achieve PCI compliance with PostgreSQL, advanced PostgreSQL security features, and use-case presentations.<br />
           <br />
           Tickets for {{ conference.name }} can be purchased below the schedule or on the <a href="/{{ conference.slug }}/tickets/">registration</a> page.
         </h4>
