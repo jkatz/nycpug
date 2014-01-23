@@ -24,7 +24,7 @@
       </div>
       <div class="span12 text-center">
         <h4>About the Speaker</h4>
-        <p class="text-left">{{ event.event_bio|markdown }}
+        <div class="text-left">{{ event.event_bio|markdown }}</div>
       </div>
       <div class="span12 text-right">
         <h4><a href="{% url 'schedule' conference.slug %}">Return to Schedule</a></h4>
