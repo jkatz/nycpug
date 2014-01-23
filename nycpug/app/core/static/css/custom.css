@@ -1,0 +1,57 @@
+/* BASE
+ *----------------------------------------------- */
+html, body {
+    position: absolute;
+    min-height: 100%;
+    top: 0;
+    right: 0;
+    left: 0;
+    overflow: visible;
+    background: #2c3840;
+}
+body {
+    right: 360px;
+    margin-bottom: -70px;
+}
+
+/* LAYOUT
+ *----------------------------------------------- */
+#topbar {
+    background: #e7ebed;
+    height: auto;
+}
+#topbar.alt {
+    background: #fff;
+}
+#topbar .navbar .hidden {
+    top: 10px;
+}
+#topbar .logo {
+    top: 10px;
+}
+#sponsors {
+    position: absolute;
+    right: -360px;
+    top: 0;
+    width: 360px;
+    height: 100%;
+    padding: 5em 0 0;
+}
+#sponsors > div {
+    padding: 2em;
+}
+#sponsors > div > div {
+    overflow: auto;
+}
+/* MODULES
+ *----------------------------------------------- */
+#countdown:after {    
+    content: '.';
+    font-size: 0;
+    visibility: hidden;
+    height: 0;
+    clear: both;
+}
+.jcontainer {
+    padding: 0 5%;
+}
