@@ -1045,7 +1045,7 @@ a.instagram:hover {
 	padding: 20px 15px;
 }
 /* Sponsors Section */
-.sponsor-logo {
+.organization-logo {
 	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 	-moz-opacity: 1;
 	-khtml-opacity: 1;
@@ -1056,13 +1056,13 @@ a.instagram:hover {
 	transition: all 200ms ease;
 	width: auto;
 }
-.sponsor-logo:hover {
+.organization-logo:hover {
 	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
 	-moz-opacity: 0.5;
 	-khtml-opacity: 0.5;
 	opacity: 0.5;
 }
-.sponsor-link {
+.organization-link {
 	display: inline-block;
 	margin: 1em;
 }

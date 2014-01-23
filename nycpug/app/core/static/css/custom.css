@@ -133,9 +133,6 @@ body p, body h4 {
     padding-top: 0;
     padding-bottom: 0;
 }
-body .text-center {
-    text-align: inherit;
-}
 
 /* Responsive
  *----------------------------------------------- */

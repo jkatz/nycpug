@@ -24,7 +24,9 @@
           {% for item in category.list %}
             <div class="text-center">
               {% for sponsor in item.sponsors %}
-                <a href="{{ sponsor.url }}" class="sponsor-link"><img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}" class="sponsor-logo"></a>
+                <a href="{{ sponsor.url }}" class="organization-link">
+                  <img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}" class="organization-logo">
+                </a>
               {% endfor %}
             </div>
           {% endfor %}
