@@ -14,7 +14,7 @@
                   <h1>{{ conference.name }}</h1>
                   <h4>PostgreSQL in the Big City.</h4>
                   <h3>{{ conference.start_date|date:"F j" }} - {{ conference.end_date|date:"j, Y" }}</h3>
-                  <a href="#" class="btn btn-large btn-primary">Tickets</a>
+                  <a href="/{{ conference.slug }}/tickets/" class="btn btn-large btn-primary">Tickets</a>
                 </div>
                 <!-- end span12 --> 
               </div>
