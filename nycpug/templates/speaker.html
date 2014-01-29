@@ -22,13 +22,15 @@
         {% endif %}
       </div>
       <!-- end hero-unit -->
-      <div class="span12">
-        <div class="divider-space"></div>
-      </div>
-      <div class="span12 text-center">
-        <h4>About the Speaker</h4>
-        <div class="text-left">{{ event.event_bio|markdown }}</div>
-      </div>
+      {% if event.event_bio %}
+        <div class="span12">
+          <div class="divider-space"></div>
+        </div>
+        <div class="span12 text-center">
+          <h4>About the Speaker</h4>
+          <div class="text-left">{{ event.event_bio|markdown }}</div>
+        </div>
+      {% endif %}
       <div class="span12 text-right">
         <h4><a href="{% url 'schedule' conference.slug %}">Return to Schedule</a></h4>
       </div>
