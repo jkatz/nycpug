@@ -4,7 +4,9 @@
   {% for event in events %}
     {% if event.is_full_block %}
       <td colspan="{{ rooms|length }}">
-        <strong>{{ event.event_title }}</strong><br />
+        <strong>
+          <a href="{% url 'speaker' block.day.conference.slug event.id %}">{{ event.event_title }}</a>
+        </strong><br />
         <em>{{ event.event_speaker }}</em>
       </td>
     {% else %}
