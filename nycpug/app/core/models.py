@@ -69,6 +69,7 @@ class Event(models.Model):
     block = models.ForeignKey('Block', related_name='events')
     room = models.ForeignKey('Room', related_name='events')
     proposal = models.OneToOneField('Proposal', null=True, blank=True)
+    track = models.ForeignKey('Track', null=True, blank=True)
     event_title = models.CharField(max_length=255, blank=True, help_text='Name of the Event')
     event_speaker = models.CharField(max_length=255, blank=True, help_text='Who is running the event')
     event_description = models.TextField(blank=True, help_text='Longer description of what the event is')
@@ -162,6 +163,15 @@ class SponsorCategory(models.Model):
     class Meta:
         ordering = ['sort_order']
         verbose_name_plural =  'sponsor categories'
+
+class Track(models.Model):
+    """track and color-coding"""
+    conference = models.ForeignKey('Conference', related_name='tracks')
+    name = models.CharField(max_length=255)
+    color = models.CharField(max_length=7, help_text='Hex Code e.g. "#ffaa00"')
+
+    def __unicode__(self):
+        return "%s (%s)" % (self.name, self.conference)
 
 class Venue(models.Model):
     """venue information for a Conference"""

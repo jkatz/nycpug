@@ -10,7 +10,7 @@
         <em>{{ event.event_speaker }}</em>
       </td>
     {% else %}
-      <td>
+      <td {% if event.track and event.track.color %}style="background-color: {{ event.track.color }};"{% endif %}>
         {% if event %}
           <strong>
           {% if event.proposal %}

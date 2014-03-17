@@ -34,6 +34,10 @@ class SponsorAdmin(admin.ModelAdmin):
     list_filter = ('category', 'conference')
     search_fields = ('name', 'category__name', 'conference__name',)
 
+class TrackAdmin(admin.ModelAdmin):
+    list_display = ('name', 'conference',)
+    ordering = ['conference']
+
 class VenueAdmin(admin.ModelAdmin):
     list_display = ('name', 'street', 'city', 'state', 'zip', 'conference',)
 
@@ -46,4 +50,5 @@ admin.site.register(Proposal, ProposalAdmin)
 admin.site.register(Room, RoomAdmin)
 admin.site.register(Sponsor, SponsorAdmin)
 admin.site.register(SponsorCategory)
+admin.site.register(Track, TrackAdmin)
 admin.site.register(Venue, VenueAdmin)
