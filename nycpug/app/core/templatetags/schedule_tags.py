@@ -11,7 +11,7 @@ def render_schedule_for_day(day):
     # first need to determine the overall order in which to render things
     rooms = []
     # line up the rooms...also had to deal with a weird Django issue hence the day__id
-    for room in Room.objects.filter(events__block__day__id=day.id).distinct().order_by('name').all():
+    for room in Room.objects.filter(events__block__day__id=day.id).distinct().order_by('sort_order').all():
         rooms.append(room)
     # render the header row
     html += '  <thead>\n'

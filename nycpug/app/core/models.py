@@ -129,6 +129,7 @@ class Room(models.Model):
     """entry for a room in a Venue"""
     venue = models.ForeignKey('Venue', related_name='rooms')
     name = models.TextField()
+    sort_order = models.IntegerField(default=0)
 
     def __unicode__(self):
         return self.name
