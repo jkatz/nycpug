@@ -16,6 +16,9 @@
       </div>
       <div class="span12 hero-unit text-center">
         <h1>{{ event.event_title }}</h1>
+        {% if event.track %}
+          <h5><em>Track: {{ event.track.name }}</em></h5>
+        {% endif %}
         <h3>{{ event.event_speaker }}</h3>
         <h4><em>{{ event.block.day.event_date }}, {{ event.block.start_time|time:"g:iA" }} - {{ event.block.end_time|time:"g:iA" }}</em></h4>
         {% if event.event_description %}
