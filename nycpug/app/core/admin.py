@@ -35,7 +35,7 @@ class SponsorAdmin(admin.ModelAdmin):
     search_fields = ('name', 'category__name', 'conference__name',)
 
 class TrackAdmin(admin.ModelAdmin):
-    list_display = ('name', 'conference',)
+    list_display = ('name', 'conference', 'color',)
     ordering = ['conference']
 
 class VenueAdmin(admin.ModelAdmin):

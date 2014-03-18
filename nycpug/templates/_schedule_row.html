@@ -3,7 +3,7 @@
   <td>{{ block.end_time|time:"g:iA" }}</td>
   {% for event in events %}
     {% if event.is_full_block %}
-      <td colspan="{{ rooms|length }}">
+      <td colspan="{{ rooms|length }}" {% if event.track and event.track.color %}style="background-color: {{ event.track.color }};"{% endif %}>
         <strong>
           <a href="{% url 'speaker' block.day.conference.slug event.id %}">{{ event.event_title }}</a>
         </strong><br />

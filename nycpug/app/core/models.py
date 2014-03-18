@@ -173,6 +173,9 @@ class Track(models.Model):
     def __unicode__(self):
         return "%s (%s)" % (self.name, self.conference)
 
+    class Meta:
+        ordering = ['name']
+
 class Venue(models.Model):
     """venue information for a Conference"""
     conference = models.ForeignKey('Conference', related_name='venues')
