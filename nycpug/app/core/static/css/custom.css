@@ -45,7 +45,7 @@ body p, body h4 {
     height: auto;
     opacity: 0.3;
 }
-#topbar:hover, 
+#topbar:hover,
 #topbar.active {
     opacity: 1.0;
     background: #fff;
@@ -93,6 +93,35 @@ body p, body h4 {
     text-align: center;
 }
 
+.global-message {
+    text-align: center;
+    background: tan;
+    color: red;
+    width: 100%;
+}
+
+.logo-2014 {
+    background: url("../images/logo.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+
+
+/*.top-bar.alt .logo span {
+    background: url("../images/logo-hover.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    text-shadow: none;
+}*/
+
+.logo-2015, .top-bar.alt .logo .logo-2015 {
+    background: url("../images/logo-2015.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+
+.logo-2015 h3 {
+    color: #1B86B9;
+    font-size: 0.7em;
+    text-transform: none;
+    font-family: Helvetica;
+    padding-left: 55px;
+}
+
 /* MODULES
  *----------------------------------------------- */
 #about .about-header {
@@ -116,7 +145,7 @@ body p, body h4 {
     display: table; /* 2 */
 }
 #countdown:after {
-   clear: both; 
+   clear: both;
 }
 #countdown {
     font-size: 0;

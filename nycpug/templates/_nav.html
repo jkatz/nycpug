@@ -1,8 +1,17 @@
 <header class="top-bar" id="topbar">
   <div class="container">
     <div>
+      {% if not conference.active %}
+        <div class="global-message">
+          <strong>{{ conference.name }} is a past conference.  For the latest conference, <a href="/">please click here</a></strong>
+        </div>
+      {% endif %}
       <div>
-        <a class="logo pull-left" href="{% url 'conference' conference.slug %}" title="{{ conference.name }}"><span></span></a>
+        <a class="logo pull-left" href="{% url 'conference' conference.slug %}" title="{{ conference.name }}">
+          <span class="logo-{{ conference.slug }}">
+            <h3>{{ conference.name }}</h3>
+          </span>
+        </a>
         <div class="navbar main-nav pull-right">
           <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
           <nav>
@@ -23,10 +32,10 @@
             </div>
           </nav>
         </div>
-        <!-- end navbar --> 
+        <!-- end navbar -->
       </div>
     </div>
-    <!-- end row --> 
+    <!-- end row -->
   </div>
-  <!-- end container --> 
+  <!-- end container -->
 </header>

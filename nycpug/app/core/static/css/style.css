@@ -268,7 +268,6 @@ input:focus:invalid:focus, textarea:focus:invalid:focus, select:focus:invalid:fo
 	top: 60px;
 }
 .top-bar .logo span {
-	background: url("../images/logo.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
 	background-position: 0 0;
 	display: inline-block;
 	height: 40px;
@@ -383,7 +382,7 @@ nav select {
 
 /* Sections */
 #intro {
-	background:url(../images/backgrounds/intro.jpg) center center no-repeat fixed;
+	background:url(../images/backgrounds/2015.jpg) center center no-repeat fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
