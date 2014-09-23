@@ -382,7 +382,7 @@ nav select {
 
 /* Sections */
 #intro {
-	background:url(../images/backgrounds/2015.jpg) center center no-repeat fixed;
+	background:url(../images/backgrounds/intro.jpg) center center no-repeat fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;

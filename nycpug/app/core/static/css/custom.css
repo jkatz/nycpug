@@ -93,6 +93,10 @@ body p, body h4 {
     text-align: center;
 }
 
+#intro.splash-2015 {
+    background:url(../images/backgrounds/2015.jpg) center center no-repeat fixed;
+}
+
 .global-message {
     text-align: center;
     background: tan;

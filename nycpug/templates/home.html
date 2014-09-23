@@ -3,11 +3,11 @@
 
 {% block content %}
   <div id="home">
-    <section id="intro">
+    <section id="intro" class="splash-{{ conference.slug }}">
       <div>
         <div class="flexslider">
           <ul class="slides">
-            <li> 
+            <li>
               <!-- slide 1 -->
               <div class="jumbotron">
                 <div class="text-center">
@@ -16,16 +16,16 @@
                   <h3>{{ conference.start_date|date:"F j" }} - {{ conference.end_date|date:"j, Y" }}</h3>
                   <a href="/{{ conference.slug }}/tickets/" class="btn btn-large btn-primary">Tickets</a>
                 </div>
-                <!-- end span12 --> 
+                <!-- end span12 -->
               </div>
-              <!-- end row --> 
+              <!-- end row -->
             </li>
             <!-- endslide 1 -->
           </ul>
         </div>
-        <!-- end flexslider --> 
+        <!-- end flexslider -->
       </div>
-      <!-- end container --> 
+      <!-- end container -->
     </section>
     <section id="about">
       <div class="container">
@@ -44,9 +44,9 @@
             <p>Come join hundreds of other PostgreSQL users in New York at our PostgreSQL user-focused on April 3 - 4 at the New York Marriott Downtown.</p>
           </div>
         </div>
-        <!-- end row --> 
+        <!-- end row -->
       </div>
-      <!--end container--> 
+      <!--end container-->
     </section>
     <section id="news">
       <div class="container">
@@ -61,7 +61,7 @@
         </div>
       </div>
     </section>
-    <!-- end intro section --> 
+    <!-- end intro section -->
     <section id="register">
       <div class="container">
         <div>
@@ -71,9 +71,9 @@
             <a href="/{{ conference.slug }}/tickets/" class="btn btn-large btn-primary">Register Now</a>
           </div>
         </div>
-        <!-- end row --> 
+        <!-- end row -->
       </div>
-      <!-- end container --> 
+      <!-- end container -->
     </section>
 </div>
 {% endblock content %}
