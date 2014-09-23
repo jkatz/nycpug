@@ -104,14 +104,12 @@ body p, body h4 {
     background: url("../images/logo.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
 }
 
-
-/*.top-bar.alt .logo span {
-    background: url("../images/logo-hover.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
-    text-shadow: none;
-}*/
-
 .logo-2015, .top-bar.alt .logo .logo-2015 {
     background: url("../images/logo-2015.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+
+.logo-2014 h3 {
+    display: none;
 }
 
 .logo-2015 h3 {
