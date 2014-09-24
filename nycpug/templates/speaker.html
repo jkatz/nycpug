@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load markup %}
 {% load schedule_tags %}
 
 {% block title %}{{ event.event_title }}{% endblock title %}
@@ -12,7 +11,7 @@
         <div class="module-header about-header">
           <h4>&nbsp;</h4>
         </div>
-        <!-- end module-header --> 
+        <!-- end module-header -->
       </div>
       <div class="span12 hero-unit text-center">
         <h1>{{ event.event_title }}</h1>
@@ -23,7 +22,7 @@
         <h4><em>{{ event.block.day.event_date }}, {{ event.block.start_time|time:"g:iA" }} - {{ event.block.end_time|time:"g:iA" }}</em></h4>
         {% if event.event_description %}
           <h4>Abstract</h4>
-          <h4 class="text-left">{{ event.event_description|markdown }}</h4>
+          <h4 class="text-left">{{ event.event_description|convert_newlines|safe }}</h4>
         {% endif %}
       </div>
       <!-- end hero-unit -->
@@ -33,16 +32,16 @@
         </div>
         <div class="span12 text-center">
           <h4>About the Speaker</h4>
-          <div class="text-left">{{ event.event_bio|markdown }}</div>
+          <div class="text-left">{{ event.event_bio|convert_newlines|safe }}</div>
         </div>
       {% endif %}
       <div class="span12 text-right">
         <h4><a href="{% url 'schedule' conference.slug %}">Return to Schedule</a></h4>
       </div>
     </div>
-    <!-- end row --> 
+    <!-- end row -->
   </div>
-  <!--end container--> 
+  <!--end container-->
 </section>
 <section id="speakers">
   <div class="container">
@@ -63,9 +62,9 @@
         <p>If you have any questions, please reach out to us at <a href="mailto:contact@nycpug.org">contact@nycpug.org</a></p>
       </div>
     </div>
-    <!-- end row --> 
+    <!-- end row -->
   </div>
-  <!-- end container --> 
+  <!-- end container -->
 </section>
 
 {% endblock content %}

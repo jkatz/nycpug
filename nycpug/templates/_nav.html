@@ -21,8 +21,12 @@
                 <li><a href="/{{ conference.slug }}/about/">About</a></li>
                 <li><a href="/{{ conference.slug }}/venue/">Venue</a></li>
                 <li><a href="/{{ conference.slug }}/tickets/">Tickets</a></li>
-                <!-- <li><a href="{% url 'submit' conference.slug %}">Submit a Proposal</a></li> -->
-                <li><a href="{% url 'schedule' conference.slug %}">Schedule</a></li>
+                {% if conference.is_call_for_papers_active %}
+                  <li><a href="{% url 'submit' conference.slug %}">Submit a Talk</a></li>
+                {% endif %}
+                {% if conference.is_schedule_active %}
+                  <li><a href="{% url 'schedule' conference.slug %}">Schedule</a></li>
+                {% endif %}
                 <li><a href="/{{ conference.slug }}/training/">Training</a></li>
                 <li><a href="/{{ conference.slug }}/what-to-do/">Attractions</a></li>
                 <li><a href="/{{ conference.slug }}/sponsor/">How to Sponsor</a></li>

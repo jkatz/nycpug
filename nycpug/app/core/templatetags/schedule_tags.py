@@ -1,8 +1,15 @@
+import re
 from django import template
+from django.template.defaultfilters import stringfilter
 from django.template.loader import render_to_string
 from nycpug.app.core.models import Room
 
 register = template.Library()
+
+@register.filter
+@stringfilter
+def convert_newlines(value):
+    return re.sub(r'\r\n|\r|\n', '<br />', value)
 
 @register.simple_tag
 def render_schedule_for_day(day):

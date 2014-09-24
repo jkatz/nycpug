@@ -30,6 +30,8 @@ class Conference(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     active = models.BooleanField(default=False)
+    is_call_for_papers_active = models.BooleanField(default=False)
+    is_schedule_active = models.BooleanField(default=False)
 
     sponsor_categories = models.ManyToManyField('SponsorCategory', blank=True, related_name='conferences')
 
