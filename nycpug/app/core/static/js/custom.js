@@ -39,7 +39,7 @@ $(document).ready(function () {
 	$('.logo').localScroll({
 		duration: 1000
 	});
-	
+
 	// Calculate the viewport height //
 	var viewHeight = $(window).height();
 	$("#intro").css({
@@ -51,30 +51,30 @@ $(document).ready(function () {
 			'height': viewHeight
 		});
 	});
-	
+
 	// Flexslider
 	// Can also be used with $(document).ready()
 	$('.flexslider').flexslider({
 		animation: "slide"
 	});
-	
+
 	// Tabs //
 	$('#schedule-tabs a').click(function (e) {
 		e.preventDefault();
 		$(this).tab('show');
 	})
-	
+
 	// Tooltip //
 	$("[rel=tooltip]").tooltip();
 	$("[data-rel=tooltip]").tooltip();
-	
+
 	//.parallax(xPosition, speedFactor, outerHeight) options:
 	//xPosition - Horizontal position of the element
 	//inertia - speed to move relative to vertical scroll. Example: 0.1 is one tenth the speed of scrolling, 2 is twice the speed of scrolling
 	//outerHeight (true/false) - Whether or not jQuery should use it's outerHeight option to determine when a section is in the viewport
 	$('#intro').parallax("50%", 0.1);
 	$('#venue').parallax("50%", 0.02);
-	
+
 	// Carousel //
 	$(".speakers-carousel").carousel({
 		dispItems: 1,
@@ -87,29 +87,29 @@ $(document).ready(function () {
 		effect: "slide",
 		animSpeed: "slow"
 	});
-	
+
 	// Toggle //
 	$('.toggle-item-title').click(function () {
 		$(this).next().slideToggle();
 		$(this).toggleClass(
 			'ui-state-active');
 	});
-	
+
 	// Countdown //
 	$('#countdown').countdown({
-		until: new Date(2014, 4 - 1, 3), // new Date(year, mth - 1, day, hr, min, sec) - date/time to count down to 
-		// or numeric for seconds offset, or string for unit offset(s): 
-		// 'Y' years, 'O' months, 'W' weeks, 'D' days, 'H' hours, 'M' minutes, 'S' seconds 
+		until: new Date(2015, 3 - 1, 25), // new Date(year, mth - 1, day, hr, min, sec) - date/time to count down to
+		// or numeric for seconds offset, or string for unit offset(s):
+		// 'Y' years, 'O' months, 'W' weeks, 'D' days, 'H' hours, 'M' minutes, 'S' seconds
 		// until: '-1m +1d', for demo
-		timezone: -4, // The timezone (hours or minutes from GMT) for the target times, or null for client local 
+		timezone: -4, // The timezone (hours or minutes from GMT) for the target times, or null for client local
 		layout: '{d<}<div><div class="digit-container">{dn}<span class="label-container">{dl}</span></div></div>{d>}{h<}<div><div class="digit-container">{hn}<span class="label-container">{hl}</span></div></div>{h>}{m<}<div><div class="digit-container">{mn}<span class="label-container">{ml}</span></div></div>{m>}{s<}<div><div class="digit-container">{sn}<span class="label-container">{sl}</span></div></div>{s>}',
-		timeSeparator: '', // Separator for time periods 
-		isRTL: false, // True for right-to-left languages, false for left-to-right 
+		timeSeparator: '', // Separator for time periods
+		isRTL: false, // True for right-to-left languages, false for left-to-right
 		format: 'dHMS', // Format for display - upper case for always, lower case only if non-zero,
 		// 'Y' years, 'O' months, 'W' weeks, 'D' days, 'H' hours, 'M' minutes, 'S' seconds
-		alwaysExpire: true, // True to trigger onExpiry even if never counted down 
-		onExpiry: liftOff // Callback when the countdown expires - 
-		// receives no parameters and 'this' is the containing division 
+		alwaysExpire: true, // True to trigger onExpiry even if never counted down
+		onExpiry: liftOff // Callback when the countdown expires -
+		// receives no parameters and 'this' is the containing division
 	});
 	// Functions if countdown timer runs out:
 	function liftOff() {
@@ -173,10 +173,10 @@ $(document).ready(function () {
 			'icon': image
 		}).click(function () {
 			$('#map_canvas').gmap('openInfoWindow', {
-				'content': '<h4>PGConf NYC 2014</h4><p><strong>New York Marriott Downtown</strong><br>85 West St. New York, NY 10006 </p>'
+				'content': '<h4>PGConf US 2015</h4><p><strong>New York Marriott Downtown</strong><br>85 West St. New York, NY 10006 </p>'
 			}, this);
 		});
 	});
-	
-	// end		
+
+	// end
 })

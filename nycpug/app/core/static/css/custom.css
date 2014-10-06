@@ -97,6 +97,10 @@ body p, body h4 {
     background:url(../images/backgrounds/2015.jpg) center center no-repeat fixed;
 }
 
+#register.splash-2015 {
+    background:url(../images/backgrounds/2015.jpg) center center no-repeat fixed;
+}
+
 .global-message {
     text-align: center;
     background: tan;
