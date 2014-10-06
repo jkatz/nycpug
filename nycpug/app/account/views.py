@@ -21,9 +21,10 @@ def login(request):
                 return response
     else:
         form = LoginForm()
-    return render_to_response('account/login.html', {
+    return render_to_response('submit.html', {
         'conference': conference,
-        'form': form
+        'login_form': form,
+        'signup_form': SignupForm(),
     }, RequestContext(request))
 
 def logout(request):
@@ -51,9 +52,10 @@ def signup(request):
                 return response
     else:
         form = SignupForm()
-    return render_to_response('account/signup.html', {
+    return render_to_response('submit.html', {
         'conference': conference,
-        'form': form
+        'login_form': LoginForm(),
+        'signup_form': form,
     }, RequestContext(request))
 
 def _perform_login(request, form):

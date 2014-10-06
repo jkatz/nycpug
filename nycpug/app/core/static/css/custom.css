@@ -124,6 +124,29 @@ body p, body h4 {
     padding-left: 55px;
 }
 
+.proposal-form td.input,
+.proposal-form input,
+.proposal-form textarea {
+    width: 80%;
+}
+
+.error {
+    border: 1px solid red;
+    font-weight: bold;
+    color: red;
+    text-align: center;
+}
+
+table.submissions {
+    width: 100%;
+}
+
+.submissions th,
+.submissions td {
+    text-align: left;
+    width: 25%;
+}
+
 /* MODULES
  *----------------------------------------------- */
 #about .about-header {

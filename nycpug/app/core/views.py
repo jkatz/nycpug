@@ -3,6 +3,8 @@ from django.shortcuts import get_object_or_404, redirect, render_to_response
 from django.template import RequestContext
 from django.views.decorators.cache import never_cache
 
+from nycpug.app.account.forms import *
+
 from .forms import ProposalForm
 from .models import Article, Conference, Event, Room
 
@@ -33,11 +35,16 @@ def submit(request, slug, proposal_id=None):
     here the user can:
     a) register for an account, if the user has not already done so OR
     b) view talk submissions that user has submitted AND submit new talks
-    
+
     """
+    print request.user.is_authenticated()
     if not request.user.is_authenticated():
-        request.session['next'] = request.path # redirect back here after signup
-        return redirect(reverse('signup')) # redirect to signup page
+        request.session['next'] = request.path
+        return render_to_response('submit.html', {
+            'conference': request.conference,
+            'login_form': LoginForm(),
+            'signup_form': SignupForm(),
+        }, RequestContext(request))
     else:
         if proposal_id:
             proposal = get_object_or_404(request.user.proposals, conference=request.conference, id=proposal_id)
@@ -52,6 +59,7 @@ def submit(request, slug, proposal_id=None):
         else:
             form = ProposalForm(request=request, instance=proposal)
         return render_to_response('submit.html', {
+            'conference': request.conference,
             'form': form,
             'proposal': proposal,
             'proposals': proposals,

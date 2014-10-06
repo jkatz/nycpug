@@ -3,69 +3,186 @@
 {% block title %}Submit a Proposal{% endblock title %}
 
 {% block content %}
-  <div id="speakers">
-    <div id="pgContentWrap">
-      <h1>Submit a Proposal</h1>
-      {% if form.errors %}
-        <div class="error">
-          There were some errors with your submission, please see below<br />
-          {{ form.non_field_errors }}
+<section id="about">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        {% if form.errors %}
+          <div class="error">
+            There were some errors with your submission, please see below<br />
+            {{ form.non_field_errors }}
+          </div>
+        {% endif %}
+        <div class="module-header about-header">
+          <h4>&nbsp;</h4>
+        </div>
+        <!-- end module-header -->
+      </div>
+      <div class="span12 hero-unit text-center">
+        <h1>Your Voice. Your Ideas.</h1>
+        <h3>Submit a Talk to {{ conference.name }}</h3>
+        <i class="iconf-lightbulb"></i>
+        <h4>Engage a motivated, fun audience that is passionate about PostgreSQL and becoming better technologists.</h4>
+      </div>
+      <!-- end hero-unit -->
+      <div class="span12">
+        <div class="divider-space"></div>
+      </div>
+      <div class="span12">
+        {% if user.is_authenticated and proposal %}
+          <h2>Edit Submission</h2>
+          <a href="{% url 'submit' conference.slug %}">Return to Submissions Page</a>
+          <hr />
+          {% include '_submit_form.html' %}
+        {% else %}
+          <p>We are currently looking for speakers for {{ conference.name }}.   Our call for proposals is open until December 17th, 2014, 12:00pm EST.  We will have notified all speakers prior to January 10th, 2015 when we will annonce the schedule.</p>
+          <p>{{ conference.name }} focuses on how you use PostgreSQL in your daily life.  Do you work with it for personal projects?  For enterprises?  What other tools and services do you use with PostgreSQL?  Do you run it in your mission-critical operations, or is it used to support something else?</p>
+          <p>We want you to share your experiences using PostgreSQL - your uses cases, experiences, deployment strategies, tools you've used in and around PostgreSQL - anything that you feel you would like to highlight to the PostgreSQL community!</p>
+          <p>
+            A non-exhaustive list of topics to consider:
+            <ul style="list-style-type: circle;">
+              <li>How to leverage new and/or innovative PostgreSQL features</li>
+              <li>Developing applications with PostgreSQL</li>
+              <li>Strategies for running PostgreSQL in production</li>
+              <li>Case studies of PostgreSQL on deployments</li>
+              <li>Managing your development process with PostgreSQL</li>
+              <li>Running PostgreSQL with other databases</li>
+              <li>How to use PostgreSQL extensions, e.g. PostGIS</li>
+              <li>PostgreSQL integrations with other database, i.e. leveraging foreign data wrappers</li>
+              <li>PostgreSQL Scalability + Replication</li>
+              <li>Accessible Insights into PostgreSQL Internals</li>
+              <li>Scalability strategies with PostgreSQL</li>
+            </ul><br />
+            But of course, these topics are just the tip of the iceberg - please feel free to submit any talk that you think is appropriate for {{ conference.name }}
+          </p>
+          <p>
+            We are asking for proposals for 50-minute sessions.  You can break up your session however you would like (e.g. 40 min talk, 10 min Q&amp;A).
+          </p>
+          <hr />
+        {% endif %}
+      </div>
+
+      {% if user.is_authenticated %}
+        <div class="span12">
+          <h2>Your Submissions</h2>
+          {% if proposals.exists %}
+            <table class="submissions">
+              <tr>
+                <th>Proposal Title</th>
+                <th>Submitted At</th>
+                <th>Last Updated At</th>
+                <th>&nbsp;</th>
+              </tr>
+              {% for proposal in proposals.all %}
+                <tr>
+                  <td>{{ proposal.title }}</td>
+                  <td>{{ proposal.created_at }}</td>
+                  <td>{{ proposal.updated_at }}</td>
+                  <td><a href="{% url 'submit' conference.slug proposal.id %}">Edit</a></td>
+                </tr>
+              {% endfor %}
+            </table>
+          {% else %}
+            You have not submitted any proposals yet.
+          {% endif %}
+          <hr />
+          <h2>New Submission</h2>
+          {% include '_submit_form.html' %}
+        </div>
+      {% else %}
+        <div class="span12">
+          In order to submit a proposal, you must be signed in.
+        </div>
+        <div class="span4">
+          <h3>Signup</h3>
+          <form action="{% url 'signup' %}" method="POST">
+            {% csrf_token %}
+            {% if signup_form.errors %}
+              <div class="error">
+                There were some errors with your submission, please see below.<br />
+                {{ signup_form.non_field_errors }}
+              </div>
+            {% endif %}
+            <table>
+              <tr {% if signup_form.name.errors %}class="error"{% endif %}>
+                <td>{{ signup_form.name.label_tag }}</td>
+                <td>
+                  {% if signup_form.name.errors %}
+                    {% for error in signup_form.name.errors %}{{ error }}<br />{% endfor %}
+                  {% endif %}
+                  {{ signup_form.name }}
+                </td>
+              </tr>
+              <tr {% if signup_form.email.errors %}class="error"{% endif %}>
+                <td>{{ signup_form.email.label_tag }}</td>
+                <td>
+                  {% if signup_form.email.errors %}
+                    {% for error in signup_form.email.errors %}{{ error }}<br />{% endfor %}
+                  {% endif %}
+                  {{ signup_form.email }}
+                </td>
+              </tr>
+              <tr {% if signup_form.password.errors %}class="error"{% endif %}>
+                <td>{{ signup_form.password.label_tag }}</td>
+                <td>
+                  {% if signup_form.password.errors %}
+                    {% for error in signup_form.password.errors %}{{ error }}<br />{% endfor %}
+                  {% endif %}
+                  {{ signup_form.password }}
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <input type="submit" name="submit" value="Create Account" />
+                </td>
+              </tr>
+            </table>
+          </form>
+        </div>
+        <div class="span4">
+          &nbsp;
+        </div>
+        <div class="span4">
+          <h3>Login</h3>
+          <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+            {% if lgin_form.errors %}
+              <div class="error">
+                There were some errors with your submission, please see below.<br />
+                {{ login_form.non_field_errors }}
+              </div>
+            {% endif %}
+            <table>
+              <tr {% if login_form.email.errors %}class="error"{% endif %}>
+                <td>{{ login_form.email.label_tag }}</td>
+                <td>
+                  {% if login_form.email.errors %}
+                    {% for error in login_form.email.errors %}{{ error }}<br />{% endfor %}
+                  {% endif %}
+                  {{ login_form.email }}
+                </td>
+              </tr>
+              <tr {% if login_form.password.errors %}class="error"{% endif %}>
+                <td>{{ login_form.password.label_tag }}</td>
+                <td>
+                  {% if login_form.password.errors %}
+                    {% for error in login_form.password.errors %}{{ error }}<br />{% endfor %}
+                  {% endif %}
+                  {{ login_form.password }}
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <input type="submit" name="submit" value="Login" />
+                </td>
+              </tr>
+            </table>
+          </form>
         </div>
       {% endif %}
-      {% if proposal %}
-        <h2>Edit Submission</h2>
-        <a href="{% url 'submit' conference.slug %}">Return to Submissions Page</a>
-        <hr />
-        {% include '_submit_form.html' %}
-      {% else %}
-      <p>We are currently looking for speakers for {{ conference.name }} on April 3rd to 4th, 2014!  Our call for proposals is open until January 10th, 2014, 12:00pm EST.  We will have notified all speakers by January 15th, 2014.</p>
-      <p>{{ conference.name }} focuses on PostgreSQL usage - how do you make optimal use of PostgreSQL in your daily life?  We want you to share your experiences using PostgreSQL - your uses cases, experiences, deployment strategies, tools you've used in and around PostgreSQL - anything that you feel you would like to highlight to the PostgreSQL community!</p>
-      <p>
-        Some topics to consider:
-        <ul>
-          <li>How to leverage new and/or innovative PostgreSQL features</li>
-          <li>Developing applications with PostgreSQL</li>
-          <li>Strategies for running PostgreSQL in production</li>
-          <li>Case studies of PostgreSQL on deployments</li>
-          <li>Managing your development process with PostgreSQL</li>
-          <li>How to use PostgreSQL extensions, e.g. PostGIS</li>
-          <li>PostgreSQL integrations with other database, i.e. leveraging foreign data wrappers</li>
-          <li>PostgreSQL Scalability + Replication</li>
-          <li>Accessible Insights into PostgreSQL Internals</li>
-          <li>Scalability strategies with PostgreSQL</li>
-        </ul><br />
-        But of course, these topics are just the tip of the iceberg - please feel free to submit any talk that you think is appropriate for PGConf NYC 2014!
-      </p>
-      <p>
-        We are asking for proposals for 50-minute sessions.  You can break up your session however you would like (e.g. 40 min talk, 10 min Q&amp;A).  If you are interested in running a 20-minute session, please contact us at <a href="mailto:contact@nycpug.org">contact@nycpug.org</a> and tell us what your thoughts are!
-      </p>
-      <hr />
-      <h2>Your Submissions</h2>
-      {% if proposals.exists %}
-        <table class="pgGenericFormTable">
-          <tr>
-            <th>Proposal Title</th>
-            <th>Submitted At</th>
-            <th>Last Updated At</th>
-            <th>&nbsp;</th>
-          </tr>
-          {% for proposal in proposals.all %}
-            <tr>
-              <td>{{ proposal.title }}</td>
-              <td>{{ proposal.created_at }}</td>
-              <td>{{ proposal.updated_at }}</td>
-              <td><a href="{% url 'submit' conference.slug proposal.id %}">Edit</a></td>
-            </tr>
-          {% endfor %}
-        </table>
-      {% else %}
-        You have not submitted any proposals yet.
-      {% endif %}
-      <hr />
-      <h2>New Submission</h2>
-      {% include '_submit_form.html' %}
-      {% endif %}
     </div>
-    {% include '_sponsors.html' %}
+    <!-- end row -->
   </div>
+  <!--end container-->
+</section>
 {% endblock content %}
