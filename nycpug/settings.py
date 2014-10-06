@@ -151,6 +151,11 @@ SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 # for auth purposes
 AUTH_USER_MODEL = 'account.User'
 
+# login URLs
+LOGIN_URL = '/2015/submit/'
+LOGIN_REDIRECT_URL = '/2015/submit/'
+LOGOUT_URL = '/logout/'
+
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error when DEBUG=False.

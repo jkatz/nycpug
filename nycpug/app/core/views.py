@@ -37,7 +37,6 @@ def submit(request, slug, proposal_id=None):
     b) view talk submissions that user has submitted AND submit new talks
 
     """
-    print request.user.is_authenticated()
     if not request.user.is_authenticated():
         request.session['next'] = request.path
         return render_to_response('submit.html', {

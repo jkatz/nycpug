@@ -9,8 +9,20 @@
       <div class="span12">
         {% if form.errors %}
           <div class="error">
-            There were some errors with your submission, please see below<br />
+            There were some errors with your submission, please see below.<br />
             {{ form.non_field_errors }}
+          </div>
+        {% endif %}
+        {% if login_form.errors %}
+          <div class="error">
+            There were some errors with signing in, please see below.<br />
+            {{ login_form.non_field_errors }}
+          </div>
+        {% endif %}
+        {% if signup_form.errors %}
+          <div class="error">
+            There were some errors with signing up, please see below.<br />
+            {{ signup_form.non_field_errors }}
           </div>
         {% endif %}
         <div class="module-header about-header">
@@ -97,12 +109,6 @@
           <h3>Signup</h3>
           <form action="{% url 'signup' %}" method="POST">
             {% csrf_token %}
-            {% if signup_form.errors %}
-              <div class="error">
-                There were some errors with your submission, please see below.<br />
-                {{ signup_form.non_field_errors }}
-              </div>
-            {% endif %}
             <table>
               <tr {% if signup_form.name.errors %}class="error"{% endif %}>
                 <td>{{ signup_form.name.label_tag }}</td>
@@ -146,12 +152,6 @@
           <h3>Login</h3>
           <form action="{% url 'login' %}" method="POST">
             {% csrf_token %}
-            {% if lgin_form.errors %}
-              <div class="error">
-                There were some errors with your submission, please see below.<br />
-                {{ login_form.non_field_errors }}
-              </div>
-            {% endif %}
             <table>
               <tr {% if login_form.email.errors %}class="error"{% endif %}>
                 <td>{{ login_form.email.label_tag }}</td>
@@ -173,7 +173,8 @@
               </tr>
               <tr>
                 <td colspan="2">
-                  <input type="submit" name="submit" value="Login" />
+                  <input type="submit" name="submit" value="Login" /><br />
+                  <a href="{% url 'password_reset' %}">Reset Your Password</a>
                 </td>
               </tr>
             </table>
