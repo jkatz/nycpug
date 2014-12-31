@@ -37,12 +37,14 @@
       <div class="span12 hero-unit">
         <h3>Reviews</h3>
       </div>
+      <ul>
       {% for opinion in opinions %}
-      <div class="row">
+        <li>
         <h3>{{ opinion.user.get_short_name }} says <span style="color:{% if opinion.is_recommended%}green{% else %}red{% endif %}">{{ opinion.is_recommended|yesno }}</span></h3>
         <p>{{ opinion.description|convert_newlines|safe }}</p>
-      </div>
+      </li>
       {% endfor %}
+      </ul>
     </div>
     <div class="row">
       <div class="span12 hero-unit">
