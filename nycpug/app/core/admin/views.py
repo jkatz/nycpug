@@ -7,6 +7,7 @@ from django.shortcuts import get_object_or_404, redirect, render_to_response
 from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from django.utils.decorators import method_decorator
+from django.views.decorators.cache import never_cache
 from django.views.generic.base import TemplateView, View
 
 from nycpug.app.core.models import *
@@ -22,6 +23,7 @@ __all__ = [
 # access mixins
 class ModeratorMixin(View):
     """restrict access to just admins"""
+    @method_decorator(never_cache)
     @method_decorator(user_passes_test(lambda user: user.has_perm('core.create_opinion')))
     def dispatch(self, *args, **kwargs):
         return super(ModeratorMixin, self).dispatch(*args, **kwargs)
