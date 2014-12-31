@@ -79,7 +79,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.name.strip()
 
     def get_short_name(self):
-        return self.get_full_name()
+        return self.get_full_name().split(' ')[0]
 
     def __unicode__(self):
         return self.name

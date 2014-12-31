@@ -134,6 +134,12 @@ class Proposal(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def status_title(self):
+        """returns the status in titleized form"""
+        for status_tuple in self.STATUS:
+            if status_tuple[0] == self.status:
+                return status_tuple[1]
+
     def sync_with_models(self):
         """if an Event is associated with this instance, update the info"""
         # only perform this action if Proposal has already been created

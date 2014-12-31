@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load moderator_tags %}
+{% load schedule_tags %}
+
+{% block title %}{{ proposal.title }} - {{ proposal.user.get_full_name }} | Moderation{% endblock title %}
+
+{% block content %}
+<section id="schedule">
+  <div class="container">
+    {% if form.errors %}
+    <div class="error">
+      There were problems saving your review:<br /><br/>
+      {{ form.errors }}
+    </div>
+    {% endif %}
+    <div class="row">
+      <div class="span12 hero-unit">
+        <a href="{% url 'admin_moderate_conference' conference.slug %}">&lt;- Previous Page</a>
+        <hr />
+        <h2>{{ proposal.title }}</h2>
+        <h3>{{ proposal.user.get_full_name }}</h3>
+        <p>{{ proposal.description|convert_newlines|safe }}</p>
+      </div>
+      {% if proposal.other %}
+      <hr />
+      <h4>Additional Info</h4>
+      <p>{{ proposal.other|convert_newlines|safe }}</p>
+      {% endif %}
+      <hr />
+      <h4>Bio</h4>
+      <strong>{{ proposal.user.profile.title }}</strong><br />
+      <em>{{ proposal.user.profile.company }}</em><br /><br />
+      <p>{{ proposal.user.profile.description|convert_newlines|safe }}</p>
+      <hr />
+    </div>
+    <div class="row">
+      <div class="span12 hero-unit">
+        <h3>Reviews</h3>
+      </div>
+      {% for opinion in opinions %}
+      <div class="row">
+        <h3>{{ opinion.user.get_short_name }} says <span style="color:{% if opinion.is_recommended%}green{% else %}red{% endif %}">{{ opinion.is_recommended|yesno }}</span></h3>
+        <p>{{ opinion.description|convert_newlines|safe }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="row">
+      <div class="span12 hero-unit">
+        <h3>Edit my Review</h3>
+        <p>In order to have a review, you must save the form below, otherwise it will continue to show up as not having been reviewed by you.</p>
+      </div>
+      <form action="{% url 'admin_moderate_conference_proposal' proposal.conference.slug proposal.id %}" method="POST">
+        {% csrf_token %}
+        <table style="text-align: left; vertical-align: text-top; width: 100%;">
+          <tr>
+            <td><label for="id_is_recommended">Do I Recommend This?</label></td>
+            <td>
+              <input id="id_is_recommended" type="checkbox" name="is_recommended" value="true" {% if form.instance.is_recommended %}checked="checked"{% endif %} />
+            </td>
+          </tr>
+          <tr>
+            <td>Review Description</td>
+            <td>
+              <textarea style="width: 600px;" rows="7" name="description">{{ form.instance.description }}</textarea>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" style="text-align: center;"><input style="font-size: 28px;" type="submit" value="Save my Review" /></td>
+        </table>
+      </form>
+    </div>
+    <!-- end row -->
+  </div>
+  <!-- end container -->
+</section>
+{% endblock content %}

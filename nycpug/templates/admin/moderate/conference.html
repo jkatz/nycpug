@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load moderator_tags %}
+
+{% block content %}
+<section id="schedule">
+  <div class="container">
+    <div class="row">
+      <div class="span12 hero-unit">
+        <a href="{% url 'admin_moderate' %}">&lt;- Previous Page</a>
+        <hr />
+        <h4>
+          Conference - {{ conference.name }}
+        </h4>
+      </div>
+      <!-- end span12 -->
+      <div class="span12">
+        <div class="module-header schedule-header">
+          <h3>Overall Stats</h3>
+          <table border="1" style="margin: auto;">
+            <tr>
+              <td>Total Proposals</td>
+              <td>{{ stats.total_proposals }}</td>
+            </tr>
+            <tr>
+              <td>Accepted Proposals</td>
+              <td>{{ stats.accepted_proposals }}</td>
+            </tr>
+            <tr>
+              <td>Declined Proposals</td>
+              <td>{{ stats.declined_proposals }}</td>
+            </tr>
+            <tr>
+              <td>Undecided Proposals</td>
+              <td>{{ stats.declined_proposals }}</td>
+            </tr>
+            <tr>
+              <td>Reviews Written</td>
+              <td>{{ stats.total_opinions }}</td>
+            </tr>
+          </table>
+          <hr />
+          <h3>My Stats</h3>
+          <table border="1" style="margin: auto;">
+            <tr>
+              <td>My Proposal Reviews</td>
+              <td>{{ stats.total_user_opinions }}</td>
+            </tr>
+            <tr>
+              <td>My Recomendations</td>
+              <td>{{ stats.total_user_recommendations }}</td>
+            </tr>
+            <tr>
+              <td>My Reviews to Write</td>
+              <td>{{ stats.total_user_need_opinions }}</td>
+            </tr>
+          </table>
+          <hr />
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+    <div class="row">
+      <div class="span12 hero-unit">
+        <h4>
+          Review Proposals
+        </h4>
+        <p>Proposals are ordered by ones you have not reviewed, then date submitted<br/><br/>
+          To review, click either on the proposal title or "View"
+        </p>
+      </div>
+      <!-- end span12 -->
+      <div class="span12">
+        <div class="module-header schedule-header">
+          <h3>Proposals</h3>
+          <table border="1" style="margin: auto; text-align: left;">
+            <thead>
+              <th>Title</th>
+              <th>Lead Submitter</th>
+              <th>Organization</th>
+              <th>Position</th>
+              <th>Status</th>
+              <th>+1s</th>
+              <th># Reviews</th>
+              <th>Did I Review?</th>
+            </thead>
+            <tbody>
+              {% for proposal in proposals %}
+              <tr>
+                <td>
+                  <a href="{% url 'admin_moderate_conference_proposal' proposal.conference.slug proposal.id %}">{{ proposal.title }}</a>
+                </td>
+                <td><a href="mailto:{{ proposal.user.email }}">{{ proposal.user.get_full_name }}</td>
+                <td>{{ proposal.user.profile.company }}</td>
+                <td>{{ proposal.user.profile.title }}</td>
+                <td {% if proposal.status == 'accepted' %}style="color:green"{% elif proposal.status == 'declined'%}style="color: red"{% endif %}>{{ proposal.status_title }}</td>
+                <td>{% total_positive_opinions proposal %}</td>
+                <td>{{ proposal.opinions.count }}</td>
+                <td>{% did_i_review proposal user %}</td>
+                <td><a href="{% url 'admin_moderate_conference_proposal' proposal.conference.slug proposal.id %}">View</a></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <hr />
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+  </div>
+  <!-- end container -->
+</section>
+{% endblock content %}

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import *
+from nycpug.app.core.models import *
 
 class ArticleAdmin(admin.ModelAdmin):
     list_display = ('title', 'conference', 'user', 'created_at', 'published',)
