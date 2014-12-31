@@ -22,8 +22,8 @@ class EventAdmin(admin.ModelAdmin):
     list_display = ('event_title', 'event_speaker',)
 
 class ProposalAdmin(admin.ModelAdmin):
-    list_display = ('title', 'user', 'conference', 'accepted',)
-    list_filter = ('conference', 'accepted',)
+    list_display = ('title', 'user', 'conference', 'status',)
+    list_filter = ('conference', 'status',)
     search_fields = ('title', 'user__name',)
 
 class RoomAdmin(admin.ModelAdmin):

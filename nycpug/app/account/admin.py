@@ -2,6 +2,8 @@ from django import forms
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as OldUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
+from django.contrib.auth.models import Permission
+from django.contrib.contenttypes.models import ContentType
 from django.contrib.flatpages.models import FlatPage
 from django.contrib.flatpages.admin import FlatPageAdmin
 from django.core.urlresolvers import reverse
@@ -39,7 +41,6 @@ class UserChangeForm(forms.ModelForm):
         exclude = (
             'date_joined',
             'last_login',
-            'user_permissions',
         )
 
 class UserCreationForm(forms.Form):
@@ -109,7 +110,7 @@ class UserAdmin(OldUserAdmin):
     search_fields = ('email', 'name',)
     fieldsets = (
         (None, { 'fields': ('email', 'name', 'password',) }),
-        ('Permissions', { 'fields': ('is_active', 'is_staff', 'is_superuser') }),
+        ('Permissions', { 'fields': ('is_active', 'is_staff', 'is_superuser', 'user_permissions') }),
         ('Companies', { 'fields': ('groups',) }),
     )
     add_fieldsets = (
@@ -117,6 +118,12 @@ class UserAdmin(OldUserAdmin):
             'fields': ('email', 'name', 'password1', 'password2')}
         ),
     )
+
+    def formfield_for_manytomany(self, db_field, request, **kwargs):
+        if db_field.name == 'user_permissions':
+            content_type = ContentType.objects.get(app_label='core', model='opinion')
+            kwargs['queryset'] = Permission.objects.filter(content_type=content_type).exclude(codename__in=('add_opinion', 'change_opinion', 'delete_opinion')).all()
+        return super(UserAdmin, self).formfield_for_manytomany(db_field, request, **kwargs)
 
 admin.site.register(User, UserAdmin)
 

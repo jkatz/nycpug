@@ -93,6 +93,21 @@ class Event(models.Model):
     def __unicode__(self):
         return self.event_title
 
+class Opinion(models.Model):
+    """an opinion on a talk proposal"""
+    user = models.ForeignKey('account.User', related_name='opinions') # user who has the opinion
+    proposal = models.ForeignKey('core.Proposal', related_name='opinions')
+    is_recommended = models.BooleanField(default=False)
+    description = models.TextField() # the description of the opinion
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = (('user', 'proposal'),)
+        permissions = (
+            ('create_opinion', 'User can create proposal opinions'),
+        )
+
 class Proposal(models.Model):
     """
     contains the proposal information submitted by account.User for
@@ -103,6 +118,11 @@ class Proposal(models.Model):
         ('40', '40-Minute Session',),
         ('20', '20-Minute Session',),
     )
+    STATUS = (
+        ('', 'Undecided'),
+        ('declined', 'Declined'),
+        ('accepted', 'Accepted'),
+    )
     conference = models.ForeignKey('Conference', related_name='proposals')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='proposals')
     title = models.CharField(max_length=255)
@@ -110,6 +130,7 @@ class Proposal(models.Model):
     description = models.TextField()
     other = models.TextField(null=True, blank=True)
     accepted = models.BooleanField(default=False)
+    status = models.CharField(max_length=255, null=True, blank=True, choices=STATUS, default='')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
