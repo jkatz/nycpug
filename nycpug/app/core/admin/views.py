@@ -43,9 +43,9 @@ class ConferenceView(TemplateView, ModeratorMixin):
             'total_opinions': Opinion.objects.filter(proposal__conference=conference).count(),
             'accepted_proposals': conference.proposals.filter(status='accepted').count(),
             'declined_proposals': conference.proposals.filter(status='declined').count(),
-            'undecided_proposals': conference.proposals.filter(status='').count(),
             'total_proposals': conference.proposals.count(),
         }
+        context['stats']['undecided_proposals'] = context['stats']['total_proposals'] - context['stats']['accepted_proposals'] - context['stats']['declined_proposals']
         # works due to unique constraint
         context['stats']['total_user_need_opinions'] = context['stats']['total_proposals'] - context['stats']['total_user_opinions']
         # proposals
