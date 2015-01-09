@@ -76,7 +76,7 @@
             <a href="?status=accepted" style="color:green;">Accepted</a> |
             <a href="?status=rejected" style="color:red;">Rejected</a> |
             <a href="?status=">Undecided</a> |
-            <a href="">All</a>
+            <a href="{% url 'admin_moderate_conference' conference.slug %}">All</a>
           </div>
           <table border="1" style="margin: auto; text-align: left;">
             <thead>
