@@ -33,6 +33,13 @@ class ModeratorMixin(View):
 class ConferenceView(TemplateView, ModeratorMixin):
     """index page for moderating a conference"""
     template_name = 'admin/moderate/conference.html'
+    # query for searching over all propsoals
+    PROPOSAL_QUERY = """SELECT p.*
+    FROM core_proposal p
+    %s
+    WHERE %s
+    ORDER BY (o.id IS NOT NULL), p.created_at
+    """
 
     def get_context_data(self, slug, *args, **kwargs):
         context = super(ConferenceView, self).get_context_data(*args, **kwargs)
@@ -48,15 +55,15 @@ class ConferenceView(TemplateView, ModeratorMixin):
         }
         # works due to unique constraint
         context['stats']['total_user_need_opinions'] = context['stats']['total_proposals'] - context['stats']['total_user_opinions']
-        # proposals
-        context['proposals'] = Proposal.objects.raw("""SELECT p.*
-        FROM core_proposal p
-        LEFT OUTER JOIN core_opinion o ON
-            o.proposal_id = p.id AND
-            o.user_id = %(user_id)s
-        WHERE p.conference_id = %(conference_id)s
-        ORDER BY (o.id IS NOT NULL), p.created_at
-        """, { 'user_id': self.request.user.id, 'conference_id': conference.id })
+        # proposal query
+        params = { 'user_id': self.request.user.id, 'conference_id': conference.id }
+        joins = ["""LEFT OUTER JOIN core_opinion o ON o.proposal_id = p.id AND o.user_id = %(user_id)s"""]
+        conditions = ['p.conference_id = %(conference_id)s']
+        if self.request.GET.get('status'):
+            conditions.append('p.status = %(status)s')
+            params['status'] = self.request.GET.get('status')
+        sql = self.PROPOSAL_QUERY % ("\n".join(joins), "\nAND ".join(conditions),)
+        context['proposals'] = Proposal.objects.raw(sql, params)
         return context
 
 class DashboardView(TemplateView, ModeratorMixin):
