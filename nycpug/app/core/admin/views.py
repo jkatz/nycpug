@@ -59,7 +59,7 @@ class ConferenceView(TemplateView, ModeratorMixin):
         params = { 'user_id': self.request.user.id, 'conference_id': conference.id }
         joins = ["""LEFT OUTER JOIN core_opinion o ON o.proposal_id = p.id AND o.user_id = %(user_id)s"""]
         conditions = ['p.conference_id = %(conference_id)s']
-        if self.request.GET.get('status'):
+        if self.request.GET.get('status') is not None:
             conditions.append('p.status = %(status)s')
             params['status'] = self.request.GET.get('status')
         sql = self.PROPOSAL_QUERY % ("\n".join(joins), "\nAND ".join(conditions),)
