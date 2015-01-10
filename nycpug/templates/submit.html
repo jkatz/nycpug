@@ -88,6 +88,7 @@
                 <th>Proposal Title</th>
                 <th>Submitted At</th>
                 <th>Last Updated At</th>
+                <th>Status</th>
                 <th>&nbsp;</th>
               </tr>
               {% for proposal in proposals.all %}
@@ -95,6 +96,7 @@
                   <td>{{ proposal.title }}</td>
                   <td>{{ proposal.created_at }}</td>
                   <td>{{ proposal.updated_at }}</td>
+                  <td style="color:{% if proposal.status == 'accepted'%}green{% elif proposal.status == 'declined'%}red{% endif %};">{{ proposal.status|title }}</td>
                   <td><a href="{% url 'submit' conference.slug proposal.id %}">Edit</a></td>
                 </tr>
               {% endfor %}
