@@ -21,6 +21,17 @@ class DayAdmin(admin.ModelAdmin):
 class EventAdmin(admin.ModelAdmin):
     list_display = ('event_title', 'event_speaker',)
 
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == 'block':
+            kwargs['queryset'] = Block.objects.filter(day__conference__active=True).order_by('day__event_date', 'start_time').all()
+        elif db_field.name == 'room':
+            kwargs['queryset'] = Room.objects.filter(venue__conference__active=True).order_by('sort_order').all()
+        elif db_field.name == 'proposal':
+            kwargs['queryset'] = Proposal.objects.filter(conference__active=True, status='accepted').order_by('title').all()
+        elif db_field.name == 'track':
+            kwargs['queryset'] = Track.objects.filter(conference__active=True).order_by('name').all()
+        return super(EventAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
+
 class ProposalAdmin(admin.ModelAdmin):
     list_display = ('title', 'user', 'conference', 'status',)
     list_filter = ('conference', 'status',)
