@@ -19,7 +19,11 @@ class DayAdmin(admin.ModelAdmin):
     list_display = ('event_date', 'venue', 'conference',)
 
 class EventAdmin(admin.ModelAdmin):
-    list_display = ('event_title', 'event_speaker',)
+    list_display = ('event_title', 'event_speaker', 'conference_name',)
+    list_filter = ('block__day__conference',)
+
+    def conference_name(self, obj):
+        return obj.block.day.conference.name
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == 'block':
