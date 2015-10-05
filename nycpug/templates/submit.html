@@ -47,10 +47,10 @@
           <hr />
           {% include '_submit_form.html' %}
         {% else %}
-          <p>We are currently looking for speakers for {{ conference.name }}.   Our call for proposals is open until December 17th, 2014, 11:59pm EST.  We will have notified all speakers prior to January 10th, 2015 when we will annonce the schedule.</p>
+          <p>We are currently looking for speakers for {{ conference.name }}.   Our call for proposals is open until January 6th, 2016, 11:59pm EST.  We will have notified all speakers prior to January 20th, 2016 when we will annonce the schedule.</p>
           <p>{{ conference.name }} focuses on how you use PostgreSQL in your daily life.  Do you work with it for personal projects?  For enterprises?  What other tools and services do you use with PostgreSQL?  Do you run it in your mission-critical operations, or is it used to support something else?</p>
           <p>We want you to share your experiences using PostgreSQL - your uses cases, experiences, deployment strategies, tools you've used in and around PostgreSQL - anything that you feel you would like to highlight to the PostgreSQL community!</p>
-          <p>If you would like some ideas from past conferences, check out the schedule from <a href="{% url 'schedule' 2014 %}">PGConf NYC 2014</a></p>
+          <p>If you would like some ideas from past conferences, check out the schedule from <a href="{% url 'schedule' 2014 %}">PGConf NYC 2014</a> and <a href="{% url 'schedule' 2015 %}">PGConf US 2015</a> as well as the videos from <a href="https://www.youtube.com/pgconfus/" target="_blank">PGConf US 2015</a></p>
           <p>
             A non-exhaustive list of topics to consider:
             <ul style="list-style-type: circle;">
@@ -74,6 +74,9 @@
           </p>
           <p>
             Each session during the conference is 50-minutes, and you can break up your session however you would like (e.g. 40 min talk, 10 min Q&amp;A).
+          </p>
+          <p>
+            You may also submit a session as a 3-hour training, but there are very limited slots for these.  Please indicate in the comments that you are submitting this as a training.
           </p>
           <hr />
         {% endif %}
