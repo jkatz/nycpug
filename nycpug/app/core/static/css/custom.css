@@ -124,11 +124,23 @@ body p, body h4 {
     background: url("../images/logo-2015.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
 }
 
+.logo-2016, .top-bar.alt .logo .logo-2016 {
+    background: url("../images/logo-2015.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+
 .logo-2014 h3 {
     display: none;
 }
 
 .logo-2015 h3 {
+    color: #1B86B9;
+    font-size: 0.7em;
+    text-transform: none;
+    font-family: Helvetica;
+    padding-left: 55px;
+}
+
+.logo-2016 h3 {
     color: #1B86B9;
     font-size: 0.7em;
     text-transform: none;
