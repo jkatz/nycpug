@@ -97,7 +97,7 @@ $(document).ready(function () {
 
 	// Countdown //
 	$('#countdown').countdown({
-		until: new Date(2015, 3 - 1, 25), // new Date(year, mth - 1, day, hr, min, sec) - date/time to count down to
+		until: new Date(2016, 4 - 1, 18), // new Date(year, mth - 1, day, hr, min, sec) - date/time to count down to
 		// or numeric for seconds offset, or string for unit offset(s):
 		// 'Y' years, 'O' months, 'W' weeks, 'D' days, 'H' hours, 'M' minutes, 'S' seconds
 		// until: '-1m +1d', for demo
@@ -135,7 +135,7 @@ $(document).ready(function () {
 
 	// Google Map //
 	$('#map_canvas').gmap({
-		'center': new google.maps.LatLng(40.70967,-74.014598), // Change this to your desired latitude and longitude
+		'center': new google.maps.LatLng(40.6936775,-73.9882399), // Change this to your desired latitude and longitude
 		'zoom': 15,
 		'mapTypeControl': false,
 		'navigationControl': false,
@@ -168,12 +168,12 @@ $(document).ready(function () {
 	$('#map_canvas').gmap().bind('init', function () {
 		$('#map_canvas').gmap('addMarker', {
 			'id': 'marker-1',
-			'position': '40.70967,-74.014598',
+			'position': '40.6936775,-73.9882399',
 			'bounds': false,
 			'icon': image
 		}).click(function () {
 			$('#map_canvas').gmap('openInfoWindow', {
-				'content': '<h4>PGConf US 2015</h4><p><strong>New York Marriott Downtown</strong><br>85 West St. New York, NY 10006 </p>'
+				'content': '<h4>PGConf US 2016</h4><p><strong>New York Marriott at Brooklyn Bridge</strong><br>333 Adams St. Brooklyn, NY 11201 </p>'
 			}, this);
 		});
 	});
