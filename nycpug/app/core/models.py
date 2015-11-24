@@ -114,9 +114,9 @@ class Proposal(models.Model):
     core.Conference
     """
     FORMATS = (
-        ('50', '50-Minute Session',),
-        ('40', '40-Minute Session',),
-        ('20', '20-Minute Session',),
+        ('Regular', '50-Min Session (Apr 19 - 20)',),
+        ('Training', '3-Hour Training (Apr 18)',),
+        ('Summit', 'Regulated Industry Summit (Apr 18)',),
     )
     STATUS = (
         ('', 'Undecided'),
@@ -126,7 +126,7 @@ class Proposal(models.Model):
     conference = models.ForeignKey('Conference', related_name='proposals')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='proposals')
     title = models.CharField(max_length=255)
-    format = models.CharField(max_length=255, null=True, blank=True, choices=FORMATS, default='50')
+    format = models.CharField(max_length=255, null=True, blank=True, choices=FORMATS, default='Regular')
     description = models.TextField()
     other = models.TextField(null=True, blank=True)
     accepted = models.BooleanField(default=False)

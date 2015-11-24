@@ -1,13 +1,19 @@
 import re
 from django import forms
 
+from .models import Proposal
+
 class ProposalForm(forms.Form):
     """creates a proposal + bio info"""
-    PROPOSAL_FIELDS = ['title', 'description', 'other']
+    PROPOSAL_FIELDS = ['title', 'description', 'format', 'other']
     PROFILE_FIELDS = ['profile_company', 'profile_title', 'profile_description', 'twitter', 'irc']
     title = forms.CharField(
         label='Title',
         max_length=255,
+    )
+    format = forms.ChoiceField(
+        label='Format',
+        choices=Proposal.FORMATS,
     )
     description = forms.CharField(
         label='Abstract',

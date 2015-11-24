@@ -13,6 +13,15 @@
         {{ form.title }}
       </td>
     </tr>
+    <tr {% if form.format.errors %}class="error"{% endif %}>
+      <td>{{ form.format.label_tag }}</td>
+      <td class="input">
+        {% if form.format.errors %}
+          {% for error in form.format.errors %}{{ error }}<br />{% endfor %}
+        {% endif %}
+        {{ form.format }}
+      </td>
+    </tr>
     <tr {% if form.description.errors %}class="error"{% endif %}>
       <td>{{ form.description.label_tag }}</td>
       <td class="input">
