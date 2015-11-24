@@ -134,6 +134,12 @@ class Proposal(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def format_title(self):
+        """returns the format in titleized form"""
+        for format_type in self.FORMATS:
+            if format_type[0] == self.format:
+                return format_type[1]
+
     def status_title(self):
         """returns the status in titleized form"""
         for status_tuple in self.STATUS:
