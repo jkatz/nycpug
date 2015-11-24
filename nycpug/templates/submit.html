@@ -90,6 +90,7 @@
             <table class="submissions">
               <tr>
                 <th>Proposal Title</th>
+                <th>Format</th>
                 <th>Submitted At</th>
                 <th>Last Updated At</th>
                 <th>Status</th>
@@ -98,6 +99,7 @@
               {% for proposal in proposals.all %}
                 <tr>
                   <td>{{ proposal.title }}</td>
+                  <td>{{ proposal.format }}</td>
                   <td>{{ proposal.created_at }}</td>
                   <td>{{ proposal.updated_at }}</td>
                   <td style="color:{% if proposal.status == 'accepted'%}green{% elif proposal.status == 'declined'%}red{% endif %};">{{ proposal.status|title }}</td>

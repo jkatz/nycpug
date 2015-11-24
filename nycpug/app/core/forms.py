@@ -61,6 +61,7 @@ class ProposalForm(forms.Form):
                 conference=self.request.conference,
                 title=self.cleaned_data.get('title'),
                 description=self.cleaned_data.get('description'),
+                format=self.cleaned_data.get('format'),
                 other=self.cleaned_data.get('other'),
             )
         # update profile info

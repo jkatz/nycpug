@@ -37,8 +37,8 @@ class EventAdmin(admin.ModelAdmin):
         return super(EventAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 
 class ProposalAdmin(admin.ModelAdmin):
-    list_display = ('title', 'user', 'conference', 'status',)
-    list_filter = ('conference', 'status',)
+    list_display = ('title', 'user', 'conference', 'format', 'status',)
+    list_filter = ('conference', 'format', 'status',)
     search_fields = ('title', 'user__name',)
 
 class RoomAdmin(admin.ModelAdmin):
