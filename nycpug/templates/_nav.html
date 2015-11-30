@@ -27,9 +27,7 @@
                 {% if conference.is_schedule_active %}
                   <li><a href="{% url 'schedule' conference.slug %}">Schedule</a></li>
                 {% endif %}
-                {% comment %}
                 <li><a href="/{{ conference.slug }}/training/">Training &amp; Summits</a></li>
-                {% endcomment %}
                 <li><a href="/{{ conference.slug }}/what-to-do/">Attractions</a></li>
                 <li><a href="/{{ conference.slug }}/sponsor/">How to Sponsor</a></li>
                 <li><a href="/{{ conference.slug }}/policies/">Policies</a></li>
