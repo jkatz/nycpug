@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.db.models.signals import pre_save
+from django.utils.text import slugify
 
 class Article(models.Model):
     """news about the conference that goes on the main page"""
@@ -85,6 +86,7 @@ class Event(models.Model):
         if self.id is None and self.proposal:
             try:
                 self.event_title = self.proposal.title
+                self.slug = slugify(self.event_title)
                 self.event_speaker = self.proposal.user.get_full_name()
                 self.event_description = self.proposal.description
                 self.event_bio = self.proposal.user.profile.description
