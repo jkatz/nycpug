@@ -24,9 +24,11 @@ def schedule(request, slug):
     """list the schedule...one day"""
     return render_to_response('schedule.html', {}, RequestContext(request))
 
-def speaker(request, slug, event_id):
+def speaker(request, slug, event_id, event_slug=None):
     """render information for a speaker"""
     event = get_object_or_404(Event, id=event_id)
+    if event_slug is None:
+        return redirect(reverse('speaker_with_slug', args=[slug, event.id, event.slug]), permanent=True)
     return render_to_response('speaker.html', { 'event': event }, RequestContext(request))
 
 @never_cache # causes issues with reloading data from form

@@ -77,6 +77,7 @@ class Event(models.Model):
     event_description = models.TextField(blank=True, help_text='Longer description of what the event is')
     event_bio = models.TextField(blank=True, help_text='Description of the speaker')
     is_full_block = models.BooleanField(default=False, help_text='Check this if this is the only event in the block')
+    slug = models.SlugField(blank=True, null=True, max_length=1024)
 
     def sync_with_models(self):
         """if an Event is associated with this instance, update the info"""
