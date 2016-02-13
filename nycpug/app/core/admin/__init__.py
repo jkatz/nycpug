@@ -21,6 +21,7 @@ class DayAdmin(admin.ModelAdmin):
 class EventAdmin(admin.ModelAdmin):
     list_display = ('event_title', 'event_speaker', 'conference_name',)
     list_filter = ('block__day__conference',)
+    prepopulated_fields = { 'slug': ('event_title',) }
 
     def conference_name(self, obj):
         return obj.block.day.conference.name
