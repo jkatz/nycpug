@@ -16,7 +16,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         events = []
         for event in Event.objects.order_by('-block__day__conference__slug'):
-            events.extend(
+            events.append(
                 E.url(
                     E.loc('%s%s' % (self.SITE_URL, reverse('speaker_with_slug', args=[event.block.day.conference.slug, event.id, event.slug]),)),
                     E.changefreq('weekly'),
