@@ -152,9 +152,12 @@ SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 AUTH_USER_MODEL = 'account.User'
 
 # login URLs
-LOGIN_URL = '/2015/submit/'
-LOGIN_REDIRECT_URL = '/2015/submit/'
+LOGIN_URL = '/2016/submit/'
+LOGIN_REDIRECT_URL = '/2016/submit/'
 LOGOUT_URL = '/logout/'
+
+# sitemaps
+SITEMAP_PATH = MEDIA_ROOT + '/sitemap.xml'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
