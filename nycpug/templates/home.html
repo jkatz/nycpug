@@ -1,75 +1,52 @@
 {% extends 'base.html' %}
-
 {% block content %}
 <div id="home">
   <section id="intro" class="splash-{{ conference.slug }}">
     <div>
-      <div class="flexslider">
-        <ul class="slides">
-          <li>
-            <!-- slide 1 -->
-            <div class="jumbotron">
-              <div class="text-center">
+        <section id="register">
                 <h1>{{ conference.name }}</h1>
                 <h4>Building a Bigger, Stronger PostgreSQL Community</h4>
-                <h3>{{ conference.start_date|date:"F j" }} - {{ conference.end_date|date:"j, Y" }}</h3>
-                <a href="/{{ conference.slug }}/tickets/" class="btn btn-large btn-primary">Tickets</a>
+                <h4>{{ conference.start_date|date:"F j" }} - {{ conference.end_date|date:"j, Y" }}</h4>
+    <div class="container">
+        <div id="countdown"></div>
+        <div class="text-center">
+          <a href="/{{ conference.slug }}/tickets/" class="btn btn-large btn-primary">Register Now</a>
+      </div>
+      <!-- end row -->
+    </div> 
+    <!-- end container -->
+  </section>
+              <div class="text-center">
+                   {% if sponsors %}
+                          {% regroup sponsors by category as sponsor_list %}
+                          {% for category in sponsor_list %}
+                            <div class="text-center">
+                              <div class="subheader">
+				{% for item in category.list %}
+		                {% if item.category != "Platinum" %}        
+              			<h4>{{ category.grouper }}</h4>           
+		                {% endif %}
+                                {% endfor %} 
+                              </div>
+                              <!-- -->
+                            </div>
+                            {% for item in category.list %}
+                              <div class="text-center">
+                                {% for sponsor in item.sponsors %}
+                                {% if sponsor.category_id != 1 %}
+                                  <a href="{{ sponsor.url }}" class="organization-link" target="_blank">
+                                    <img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}" class="organization-logo">
+                                  </a>
+                                {% endif %}
+                                {% endfor %}
+                              </div>
+                            {% endfor %}
+                          {% endfor %}
+                        {% endif %}
               </div>
               <!-- end span12 -->
             </div>
             <!-- end row -->
-          </li>
-          <!-- endslide 1 -->
-        </ul>
-      </div>
-      <!-- end flexslider -->
-    </div>
-    <!-- end container -->
-  </section>
-  <section id="about">
-    <div class="container">
-      <div>
-        <div class="hero-unit text-center">
-          <h1>The most innovative database<br/>In the most dynamic city.</h1><br />
-        </div>
-        <!-- end hero-unit -->
-        <div>
-          <div class="divider-space"></div>
-        </div>
-        <div>
-          <p>The PostgreSQL community has continued to build an innovative, reliable, robust, and performant database management system, much like the people and enterprises you find in New York, where {{ conference.name }} is being hosted.</p>
-          <p>Learn from talks given by PostgreSQL core team members and major contributors, power users from large corporations, startups and government, systems administrators, developers, and more.</p>
-          <p>Come join hundreds of other PostgreSQL users in one of the largest PostgreSQL conferences in the world from April 18 - 20 at the New York Marriott at the Brooklyn Bridge.</p>
-        </div>
-      </div>
-      <!-- end row -->
-    </div>
-    <!--end container-->
-  </section>
-  <section id="news">
-    <div class="container">
-      <div>
-        <div class="hero-unit text-center white">
-          <h2>Latest News</h2>
-        </div>
-        <div class="text-center">
-          <a class="twitter-timeline" href="https://twitter.com/PGConfUS" data-widget-id="425134920004935680">Tweets by @PGConfUS</a>
-          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- end intro section -->
-  <section id="register" class="splash-{{ conference.slug }}">
-    <div class="container">
-      <div>
-        <div id="countdown"></div>
-        <div class="white register-box text-center">
-          <h2 class="register-title">Tickets Available Today From $299</h2>
-          <a href="/{{ conference.slug }}/tickets/" class="btn btn-large btn-primary">Register Now</a>
-        </div>
-      </div>
-      <!-- end row -->
     </div>
     <!-- end container -->
   </section>

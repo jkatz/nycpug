@@ -1,37 +1,41 @@
 <section id="sponsors">
-  <div>
+{% include 'social_embed.html' %}
     <div>
-      <!-- end module-header -->
-      <div class="hero-unit text-center">
-        <h4>{{ conference.name }} would not take place without the generous support from our sponsors.</h4>
-      </div>
-      <!-- end hero-unit -->
       {% if sponsors %}
         {% regroup sponsors by category as sponsor_list %}
         {% for category in sponsor_list %}
-          <div class="text-center">
-            <div class="subheader">
+            <div class="subheader" align="center">
+            {% for item in category.list %}
+              {% if item.category == "Platinum" %}
               <h4>{{ category.grouper }}</h4>
+              {% endif %}
+            {% endfor %}
             </div>
-            <!-- -->
-          </div>
+          <!-- -->
           {% for item in category.list %}
+          
             <div class="text-center">
               {% for sponsor in item.sponsors %}
+              {% if sponsor.category_id == 1 %}
                 <a href="{{ sponsor.url }}" class="organization-link" target="_blank">
                   <img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}" class="organization-logo">
                 </a>
+              {% endif %}
               {% endfor %}
             </div>
           {% endfor %}
         {% endfor %}
-      {% endif %}
+        {% endif %}
       <!-- end span12 -->
       <div class="hero-unit text-center">
         <p><a href="/{{ conference.slug }}/sponsor/">Information about available sponsorship opportunities</a> can be found <a href="/{{ conference.slug }}/sponsor/">on this page</a></p>
       </div>
+      <div class="text-center">
+          <a class="twitter-timeline" href="https://twitter.com/PGConfUS" data-widget-id="425134920004935680">Tweets by @PGConfUS</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+      </div>
     </div>
     <!-- end row -->
-  </div>
   <!-- end container -->
 </section>
+{% include 'footer_embed.html' %}
