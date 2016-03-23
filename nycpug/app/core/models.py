@@ -61,7 +61,10 @@ class Day(models.Model):
     sort_order = models.IntegerField(default=0)
 
     def __unicode__(self):
-        return self.event_date.strftime('%m-%d-%Y')
+        title = self.event_date.strftime('%m-%d-%Y')
+        if self.subtitle:
+            title += ' - ' + self.subtitle
+        return title
 
     class Meta:
         ordering = ['event_date', 'sort_order']
