@@ -57,12 +57,14 @@ class Day(models.Model):
     conference = models.ForeignKey('Conference', related_name='days')
     venue = models.ForeignKey('Venue', related_name='days')
     event_date = models.DateField()
+    subtitle = models.TextField(null=True, blank=True)
+    sort_order = models.IntegerField(default=0)
 
     def __unicode__(self):
         return self.event_date.strftime('%m-%d-%Y')
 
     class Meta:
-        ordering = ['event_date']
+        ordering = ['event_date', 'sort_order']
 
 class Event(models.Model):
     """

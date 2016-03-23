@@ -28,7 +28,7 @@
         {% endif %}
         {% for day in conference.days.all %}
           <div class="module-header schedule-header">
-            <h3>{{ day.event_date }}</h3>
+            <h3>{{ day.event_date }} {% if day.subtitle%} - {{ day.subtitle }}{% endif %}</h3>
           </div>
           {% render_schedule_for_day day %}
         {% endfor %}
