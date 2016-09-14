@@ -122,9 +122,12 @@ class Proposal(models.Model):
     core.Conference
     """
     FORMATS = (
-        ('Regular', '50-Min Session (Apr 19 - 20)',),
-        ('Training', '3-Hour Training (Apr 18)',),
-        ('Summit', 'Regulated Industry Summit (Apr 18)',),
+        # ('Regular', '50-Min Session (Apr 19 - 20)',),
+        # ('Training', '3-Hour Training (Apr 18)',),
+        # ('Summit', 'Regulated Industry Summit (Apr 18)',),
+        ('2016-session', '50-Min Session (Mar 29 - 31)',),
+        ('2016-training', '3-Hour Training (Mar 18)',),
+        ('2016-ris', 'Regulated Industry Summit (Mar 28)',),
     )
     STATUS = (
         ('', 'Undecided'),
