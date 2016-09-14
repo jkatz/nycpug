@@ -47,39 +47,57 @@
           <hr />
           {% include '_submit_form.html' %}
         {% else %}
-          <p>We are currently looking for speakers for {{ conference.name }}.   Our call for proposals is open until January 31st, 2016, 11:59pm EST.  We will have notified all speakers prior to February 15th, 2016 when we will annonce the schedule.</p>
-          <p>{{ conference.name }} focuses on how you use PostgreSQL in your daily life.  Do you work with it for personal projects?  For enterprises?  What other tools and services do you use with PostgreSQL?  Do you run it in your mission-critical operations, or is it used to support something else?</p>
-          <p>We want you to share your experiences using PostgreSQL - your uses cases, experiences, deployment strategies, tools you've used in and around PostgreSQL - anything that you feel you would like to highlight to the PostgreSQL community!</p>
-          <p>If you would like some ideas from past conferences, check out the schedule from <a href="{% url 'schedule' 2014 %}">PGConf NYC 2014</a> and <a href="{% url 'schedule' 2015 %}">PGConf US 2015</a> as well as the videos from <a href="https://www.youtube.com/pgconfus/" target="_blank">PGConf US 2015</a></p>
-          <p>
-            A non-exhaustive list of topics to consider:
-            <ul style="list-style-type: circle;">
-              <li>How to leverage new and/or innovative PostgreSQL features</li>
-              <li>Developing applications with PostgreSQL</li>
-              <li>Strategies for running PostgreSQL in production</li>
-              <li>Case studies of PostgreSQL on deployments</li>
-              <li>Tools around managing PostgreSQL deployments; PostgreSQL as a utility for management</li>
-              <li>Managing your development process with PostgreSQL</li>
-              <li>Running PostgreSQL with other databases</li>
-              <li>How to use PostgreSQL extensions, e.g. PostGIS</li>
-              <li>PostgreSQL integrations with other database, i.e. leveraging foreign data wrappers</li>
-              <li>PostgreSQL Scalability + Replication</li>
-              <li>Accessible Insights into PostgreSQL Internals</li>
-              <li>Scalability strategies with PostgreSQL</li>
-            </ul><br />
-            But of course, these topics are just the tip of the iceberg - please feel free to submit any talk that you think is appropriate for {{ conference.name }}.
+          <p>Announcing the official {{ conference.name }} Call for Presentations! Call for Presentations will be open until November 15th, 2016, 11:59PM EST. Official notification will be on December 2nd, with the schedule being announced on January 2nd. Please note there will be no extensions for the submission deadline.</p>
+          <p>{{ conference.name }} will be held March 28-31, 2017 at the <a href="/2017/venue/">Westin Jersey City</a>. This year we have announced several new additions to the conference such as an extra day of talks, a job fair, and increased sponsor opportunities. With the support of the United States PostgreSQL association, we are dedicated to increasing benefits for all of our conference attendees, speakers, and sponsors. </p>
+          <p>This will be the fourth and most successful PGConf US, thanks to the participation of our attendees, speakers, volunteers, and sponsors. As a result, the PostgreSQL community has increased substantially. Forecasting over 500 attendees, the conference will be representing hundreds of companies and locations around the world.</p>
+          <p>Day one of the conference, March 28th, will focus on providing in depth, hands on trainings with the goal of increasing the skillset of the community. We will also be hosting the Third Annual Regulated Industry Summit, featuring topics such as finance, government, healthcare, and PostgreSQL. The summit brings together PostgreSQL contributors and enterprise developers to discuss solutions using PostgreSQL for challenges in regulated industries. March 29th-31st will feature dedicated talks, keynotes, and social events focused on the wonderful world of PostgreSQL.</p>
+          <p>Until November 15th, 2016, experts from around the world will be submitting talks and trainings to enhance the knowledge of the community and to be a part of one of the best open source communities in the world. Such individuals include developers, DBAs, systems administrators, business-intelligence analysts, decision makers, etc.</p>
+          <p>We send gratitude to our launch sponsors:
+            <ul>
+              <li>
+                Diamond:
+                <ul>
+                  <li>Amazon</li>
+                </ul>
+              </li>
+              <li>
+                Platinum:
+                <ul>
+                  <li>OpenSCG</li>
+                </ul>
+              </li>
+              <li>
+                Silver:
+                <ul>
+                  <li>Command Prompt</li>
+                </ul>
+              </li>
           </p>
-          <p>This year, we are planning to have a "hackers" track dedicated to presentations and discussions around the ongoing development of PostgreSQL.</p>
-          <p>
-            We do welcome submissions about commercial tools and products for PostgreSQL, but be advised that your talks should focus on the technical aspects of your product delivered by someone with technical expertise.
-          </p>
-          <p>
-            Each session during the conference is 50-minutes, and you can break up your session however you would like (e.g. 40 min talk, 10 min Q&amp;A).
-          </p>
-          <p>
-            You may also submit a session as a 3-hour training, but there are very limited slots for these.  Please indicate in the comments that you are submitting this as a training.
-          </p>
-          <hr />
+          <p>Interested in submitting a talk or training? Know what you’re doing? Please submit your proposal below.</p>
+
+        <p>Interested in submitting a talk or training but need some guidance or feedback? Here are some ideas based on past schedules (<a href="{% url 'schedule' 2016 %}">2016</a>, <a href="{% url 'schedule' 2015 %}">2015</a>, <a href="{% url 'schedule' 2014 %}">2014</a>) and <a href="https://www.youtube.com/pgconfus/" target="_blank">videos</a>.  Or look at this non-exhaustive list of topics to consider:
+          <ul style="list-style-type: circle;">
+            <li>How to leverage new and/or innovative PostgreSQL features</li>
+            <li>Developing applications with PostgreSQL</li>
+            <li>Strategies for running PostgreSQL in production</li>
+            <li>Case studies of PostgreSQL on deployments</li>
+            <li>Tools around managing PostgreSQL deployments; PostgreSQL as a utility for management</li>
+            <li>Managing your development process with PostgreSQL</li>
+            <li>Running PostgreSQL with other databases</li>
+            <li>How to use PostgreSQL extensions, e.g. PostGIS</li>
+            <li>PostgreSQL integrations with other database, i.e. leveraging foreign data wrappers</li>
+            <li>PostgreSQL Scalability + Replication</li>
+            <li>Accessible Insights into PostgreSQL Internals</li>
+            <li>Scalability strategies with PostgreSQL</li>
+          </ul>
+        </p>
+
+        <p>Or send an email to <a href="mailto:pgconf@postgresql.us">pgconf@postgresql.us</a> for assistance!</p>
+
+        <p>Interested in sponsoring? View our sponsorship prospectus: <a href="http://www.pgconf.us/static/prospectus/PGConf-US-2017-Prospectus.pdf">http://www.pgconf.us/static/prospectus/PGConf-US-2017-Prospectus.pdf</a></p>
+
+        <p>Get involved today! Be a part of PGConf US 2017 and share your PostgreSQL experience with people from around the world!</p>
+        <hr />
         {% endif %}
       </div>
 
